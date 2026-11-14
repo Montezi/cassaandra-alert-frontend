@@ -1,0 +1,123 @@
+/* The card is always dark: it has to look the same wherever it is shared. */
+.figure {
+  margin: 0;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-height: 27rem;
+  padding: var(--space-6);
+  border-radius: var(--radius-xl);
+  background: var(--color-card-bg);
+  color: var(--color-card-text);
+  overflow: hidden;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.symbol {
+  width: auto;
+  height: 2.25rem;
+}
+
+.brandText {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.descriptor {
+  font-family: var(--font-heading);
+  font-size: 0.6875rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--color-card-muted);
+}
+
+.name {
+  font-family: var(--font-heading);
+  font-size: 1.125rem;
+  font-weight: 900;
+}
+
+.classChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-pill);
+  background: var(--class);
+  color: var(--class-ink);
+  font-size: var(--font-size-sm);
+  font-weight: 800;
+}
+
+.place {
+  color: inherit;
+  font-size: 1.5rem;
+  font-weight: 900;
+}
+
+.when {
+  color: var(--color-card-muted);
+  font-size: var(--font-size-sm);
+}
+
+.imageFrame {
+  aspect-ratio: 760 / 460;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.measured {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.facts {
+  display: grid;
+  gap: var(--space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--font-size-sm);
+}
+
+.facts li {
+  display: flex;
+  gap: var(--space-2);
+  align-items: flex-start;
+}
+
+.footer {
+  color: var(--color-card-muted);
+  font-size: 0.75rem;
+}
+
+.caption {
+  margin-top: var(--space-2);
+  color: var(--color-text-muted);
+  font-size: 0.8125rem;
+  text-align: center;
+}

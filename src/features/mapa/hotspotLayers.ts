@@ -1,57 +1,55 @@
-import type { GeoJSONSource, Map as MapLibreMap } from 'maplibre-gl';
-import type { Hotspot, HotspotCollection } from '../../shared/lib/hotspotSchema';
-import { readToken } from '../../shared/theme/readToken';
+import type { ImageSource, Map as MapLibreMap } from 'maplibre-gl';
+import type { Hotspot } from '../../shared/lib/hotspotSchema';
 
-/** MapLibre helpers for the hotspot markers. Colors come from tokens.css. */
+/** MapLibre helpers: framing a hotspot and the radar overlay (ADR-003). */
 
-const SOURCE_ID = 'hotspots';
-export const HOTSPOT_LAYER_ID = 'hotspots';
-const SELECTED_LAYER_ID = 'hotspots-selected';
+const OVERLAY_SOURCE_ID = 'radar-overlay';
+const OVERLAY_LAYER_ID = 'radar-overlay';
 
-/** Adds the markers. Call on every 'style.load': changing the style removes them. */
-export function addHotspotLayers(map: MapLibreMap, hotspots: HotspotCollection): void {
-  const stroke = readToken('--color-map-hotspot-stroke');
-
-  map.addSource(SOURCE_ID, { type: 'geojson', data: hotspots });
-  map.addLayer({
-    id: HOTSPOT_LAYER_ID,
-    type: 'circle',
-    source: SOURCE_ID,
-    paint: {
-      'circle-radius': 7,
-      'circle-color': readToken('--color-map-hotspot'),
-      'circle-stroke-width': 2,
-      'circle-stroke-color': stroke,
-    },
-  });
-  // The selected marker is bigger and has a thicker ring, not only a new color.
-  map.addLayer({
-    id: SELECTED_LAYER_ID,
-    type: 'circle',
-    source: SOURCE_ID,
-    filter: ['==', ['get', 'id'], ''],
-    paint: {
-      'circle-radius': 11,
-      'circle-color': readToken('--color-map-hotspot-selected'),
-      'circle-stroke-width': 3,
-      'circle-stroke-color': stroke,
-    },
-  });
-}
-
-export function hasHotspotLayers(map: MapLibreMap): boolean {
-  return map.getLayer(SELECTED_LAYER_ID) !== undefined;
-}
-
-export function updateHotspotData(map: MapLibreMap, hotspots: HotspotCollection): void {
-  // setData returns a promise that resolves once the worker has the data; no need to wait.
-  void map.getSource<GeoJSONSource>(SOURCE_ID)?.setData(hotspots);
-}
-
-export function highlightHotspot(map: MapLibreMap, id: string | null): void {
-  map.setFilter(SELECTED_LAYER_ID, ['==', ['get', 'id'], id ?? '']);
-}
+export type Overlay = { url: string; bbox: Hotspot['properties']['bbox'] };
 
 export function fitHotspot(map: MapLibreMap, hotspot: Hotspot, animate: boolean): void {
-  map.fitBounds(hotspot.properties.bbox, { padding: 40, maxZoom: 10, animate });
+  map.fitBounds(hotspot.properties.bbox, { padding: 48, maxZoom: 9, animate });
+}
+
+/** From California to Borneo, with room for the labels: the first view. */
+export const WORLD_BOUNDS: [[number, number], [number, number]] = [
+  [-135, -40],
+  [150, 50],
+];
+
+/** Whole set of hotspots, as on first load. */
+export function fitWorld(map: MapLibreMap, animate: boolean): void {
+  map.fitBounds(WORLD_BOUNDS, { padding: 24, animate });
+}
+
+/**
+ * Shows one PNG from the pipeline over its bounding box, or removes it.
+ * Call again on every 'style.load': changing the basemap removes layers.
+ */
+export function setOverlay(map: MapLibreMap, overlay: Overlay | null): void {
+  if (map.getLayer(OVERLAY_LAYER_ID)) map.removeLayer(OVERLAY_LAYER_ID);
+  if (!overlay) {
+    if (map.getSource(OVERLAY_SOURCE_ID)) map.removeSource(OVERLAY_SOURCE_ID);
+    return;
+  }
+  const [west, south, east, north] = overlay.bbox;
+  const coordinates: [[number, number], [number, number], [number, number], [number, number]] = [
+    [west, north],
+    [east, north],
+    [east, south],
+    [west, south],
+  ];
+  const source = map.getSource<ImageSource>(OVERLAY_SOURCE_ID);
+  if (source) {
+    source.updateImage({ url: overlay.url, coordinates });
+  } else {
+    map.addSource(OVERLAY_SOURCE_ID, { type: 'image', url: overlay.url, coordinates });
+  }
+  map.addLayer({
+    id: OVERLAY_LAYER_ID,
+    type: 'raster',
+    source: OVERLAY_SOURCE_ID,
+    paint: { 'raster-opacity': 0.85 },
+  });
 }

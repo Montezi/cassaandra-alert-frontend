@@ -1,0 +1,92 @@
+.label {
+  margin-bottom: var(--space-2);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+}
+
+.timeline {
+  display: grid;
+  grid-auto-columns: minmax(0, 1fr);
+  grid-auto-flow: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  position: relative;
+}
+
+/* Line that joins the dots: from the center of the first to the center of the last. */
+.item::before {
+  content: '';
+  position: absolute;
+  top: 15px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--color-divider);
+}
+
+.item:first-child::before {
+  left: 50%;
+}
+
+.item:last-child::before {
+  right: 50%;
+}
+
+.button {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0 2px;
+  border: 0;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--color-text);
+  font-size: 0.8125rem;
+  cursor: pointer;
+}
+
+.dot {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border: 2px solid var(--color-divider);
+  border-radius: 50%;
+  background: var(--color-surface);
+}
+
+.dotInner {
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 50%;
+  background: var(--color-divider);
+}
+
+.button[aria-pressed='true'] .dot {
+  border-color: var(--class);
+  background: var(--class);
+}
+
+.button[aria-pressed='true'] .dotInner {
+  background: var(--class-ink);
+}
+
+.button[aria-pressed='true'] .date {
+  font-weight: 800;
+}
+
+.area {
+  font-family: var(--font-heading);
+  font-size: 0.9375rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}

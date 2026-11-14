@@ -1,0 +1,589 @@
+{
+  "metadata": {
+    "sample": true
+  },
+  "hotspot_id": "guaiba-rs",
+  "region": {
+    "pt": "Sul do Brasil, Bacia do Prata",
+    "en": "Southern Brazil, La Plata Basin"
+  },
+  "baseline_date": "2026-01-14",
+  "confidence": 0.86,
+  "low_coherence": false,
+  "passes": [
+    {
+      "date": "2026-10-19",
+      "affected_area_km2": 123
+    },
+    {
+      "date": "2026-10-31",
+      "affected_area_km2": 168
+    },
+    {
+      "date": "2026-11-12",
+      "affected_area_km2": 212
+    }
+  ],
+  "measured": [
+    {
+      "measure": {
+        "pt": "Sinal do radar (HH)",
+        "en": "Radar signal (HH)"
+      },
+      "value": {
+        "pt": "caiu 4,2 dB",
+        "en": "fell 4.2 dB"
+      },
+      "note": {
+        "pt": "Limite da regra: −3,1 dB. Água nova e lisa.",
+        "en": "Rule threshold: −3.1 dB. New, smooth water."
+      }
+    },
+    {
+      "measure": {
+        "pt": "Água permanente (JRC)",
+        "en": "Permanent water (JRC)"
+      },
+      "value": {
+        "pt": "não era água em 2025",
+        "en": "was not water in 2025"
+      },
+      "note": {
+        "pt": "Descarta o leito normal do lago.",
+        "en": "Rules out the lake's normal bed."
+      }
+    },
+    {
+      "measure": {
+        "pt": "Conferido com o Sentinel-1",
+        "en": "Checked with Sentinel-1"
+      },
+      "value": {
+        "pt": "mesma água, 11 nov",
+        "en": "same water, Nov 11"
+      },
+      "note": {
+        "pt": "O radar do Copernicus em banda C vê a mesma área alagada em campo aberto.",
+        "en": "Copernicus C-band radar sees the same flooded area in open fields."
+      }
+    }
+  ],
+  "hypothesis": {
+    "text": {
+      "pt": "Chuva acima da média na Bacia do Prata, padrão esperado do El Niño no Sul do Brasil.",
+      "en": "Above-average rain in the La Plata Basin, the expected El Niño pattern in southern Brazil."
+    },
+    "evidence": {
+      "pt": "310 mm em 30 dias, 2,3× a média (GPM IMERG e CHIRPS), e água subindo nas três passagens.",
+      "en": "310 mm in 30 days, 2.3× the average (GPM IMERG and CHIRPS), and water rising in all three passes."
+    },
+    "strength": "moderate"
+  },
+  "exposure": [
+    {
+      "kind": "people",
+      "label": {
+        "pt": "Pessoas na área alagada",
+        "en": "People in the flooded area"
+      },
+      "value": {
+        "pt": "≈ 18.400",
+        "en": "≈ 18,400"
+      }
+    },
+    {
+      "kind": "health",
+      "label": {
+        "pt": "Hospitais e escolas",
+        "en": "Hospitals and schools"
+      },
+      "value": {
+        "pt": "2 e 9",
+        "en": "2 and 9"
+      }
+    },
+    {
+      "kind": "roads",
+      "label": {
+        "pt": "Estradas alagadas",
+        "en": "Flooded roads"
+      },
+      "value": {
+        "pt": "14 km",
+        "en": "14 km"
+      }
+    }
+  ],
+  "sources": [
+    "NISAR GCOV",
+    "Copernicus Sentinel-1",
+    "Copernicus Sentinel-2",
+    "JRC",
+    "WorldPop",
+    "OpenStreetMap",
+    "GPM IMERG (NASA)"
+  ],
+  "scenes": {
+    "nisar_hh": {
+      "baseline": "scenes/guaiba-rs/nisar-hh-2026-01-14.webp",
+      "2026-10-19": "scenes/guaiba-rs/nisar-hh-2026-10-19.webp",
+      "2026-10-31": "scenes/guaiba-rs/nisar-hh-2026-10-31.webp",
+      "2026-11-12": "scenes/guaiba-rs/nisar-hh-2026-11-12.webp"
+    },
+    "nisar_hv": {
+      "baseline": "scenes/guaiba-rs/nisar-hv-2026-01-14.webp",
+      "2026-10-19": "scenes/guaiba-rs/nisar-hv-2026-10-19.webp",
+      "2026-10-31": "scenes/guaiba-rs/nisar-hv-2026-10-31.webp",
+      "2026-11-12": "scenes/guaiba-rs/nisar-hv-2026-11-12.webp"
+    },
+    "nisar_rgb": {
+      "baseline": "scenes/guaiba-rs/nisar-rgb-2026-01-14.webp",
+      "2026-10-19": "scenes/guaiba-rs/nisar-rgb-2026-10-19.webp",
+      "2026-10-31": "scenes/guaiba-rs/nisar-rgb-2026-10-31.webp",
+      "2026-11-12": "scenes/guaiba-rs/nisar-rgb-2026-11-12.webp"
+    },
+    "sentinel1": {
+      "baseline": "scenes/guaiba-rs/sentinel1-2026-01-14.webp",
+      "2026-11-11": "scenes/guaiba-rs/sentinel1-2026-11-11.webp"
+    },
+    "sentinel2": {
+      "baseline": "scenes/guaiba-rs/sentinel2-2026-01-14.webp",
+      "2026-11-12": "scenes/guaiba-rs/sentinel2-2026-11-12.webp"
+    }
+  },
+  "technical": {
+    "pixel_m": 54.5,
+    "roi": {
+      "x_pct": 70.26,
+      "y_pct": 75.22
+    },
+    "histogram_range_db": [
+      -15,
+      15
+    ],
+    "dates": {
+      "2026-10-19": {
+        "change": {
+          "2": "technical/guaiba-rs/change-2026-10-19-2db.webp",
+          "3": "technical/guaiba-rs/change-2026-10-19-3db.webp",
+          "4": "technical/guaiba-rs/change-2026-10-19-4db.webp"
+        },
+        "classes": "technical/guaiba-rs/classes-2026-10-19.png",
+        "coherence": "technical/guaiba-rs/coherence-2026-10-19.webp",
+        "stats": {
+          "2": {
+            "decrease_pct": 14.1,
+            "increase_pct": 2.2,
+            "area_km2": 146,
+            "mean_db": -1.4
+          },
+          "3": {
+            "decrease_pct": 11.8,
+            "increase_pct": 0.2,
+            "area_km2": 123,
+            "mean_db": -1.4
+          },
+          "4": {
+            "decrease_pct": 11.4,
+            "increase_pct": 0.0,
+            "area_km2": 118,
+            "mean_db": -1.4
+          }
+        },
+        "histogram": [
+          0.207,
+          0.225,
+          0.238,
+          0.244,
+          0.242,
+          0.232,
+          0.217,
+          0.198,
+          0.176,
+          0.159,
+          0.14,
+          0.122,
+          0.112,
+          0.104,
+          0.1,
+          0.093,
+          0.087,
+          0.085,
+          0.087,
+          0.087,
+          0.085,
+          0.095,
+          0.103,
+          0.125,
+          0.194,
+          0.318,
+          0.495,
+          0.706,
+          0.89,
+          1.0,
+          0.999,
+          0.891,
+          0.703,
+          0.49,
+          0.306,
+          0.171,
+          0.086,
+          0.044,
+          0.016,
+          0.004,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "2026-10-31": {
+        "change": {
+          "2": "technical/guaiba-rs/change-2026-10-31-2db.webp",
+          "3": "technical/guaiba-rs/change-2026-10-31-3db.webp",
+          "4": "technical/guaiba-rs/change-2026-10-31-4db.webp"
+        },
+        "classes": "technical/guaiba-rs/classes-2026-10-31.png",
+        "coherence": "technical/guaiba-rs/coherence-2026-10-31.webp",
+        "stats": {
+          "2": {
+            "decrease_pct": 18.4,
+            "increase_pct": 2.1,
+            "area_km2": 191,
+            "mean_db": -2.0
+          },
+          "3": {
+            "decrease_pct": 16.2,
+            "increase_pct": 0.2,
+            "area_km2": 168,
+            "mean_db": -2.0
+          },
+          "4": {
+            "decrease_pct": 15.8,
+            "increase_pct": 0.0,
+            "area_km2": 164,
+            "mean_db": -2.0
+          }
+        },
+        "histogram": [
+          0.241,
+          0.261,
+          0.278,
+          0.285,
+          0.286,
+          0.281,
+          0.267,
+          0.245,
+          0.228,
+          0.206,
+          0.179,
+          0.157,
+          0.136,
+          0.121,
+          0.11,
+          0.099,
+          0.09,
+          0.092,
+          0.093,
+          0.092,
+          0.096,
+          0.097,
+          0.102,
+          0.126,
+          0.197,
+          0.317,
+          0.493,
+          0.698,
+          0.887,
+          1.0,
+          0.995,
+          0.883,
+          0.693,
+          0.486,
+          0.303,
+          0.175,
+          0.087,
+          0.039,
+          0.02,
+          0.008,
+          0.004,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "2026-11-12": {
+        "change": {
+          "2": "technical/guaiba-rs/change-2026-11-12-2db.webp",
+          "3": "technical/guaiba-rs/change-2026-11-12-3db.webp",
+          "4": "technical/guaiba-rs/change-2026-11-12-4db.webp"
+        },
+        "classes": "technical/guaiba-rs/classes-2026-11-12.png",
+        "coherence": "technical/guaiba-rs/coherence-2026-11-12.webp",
+        "stats": {
+          "2": {
+            "decrease_pct": 22.5,
+            "increase_pct": 2.0,
+            "area_km2": 234,
+            "mean_db": -2.6
+          },
+          "3": {
+            "decrease_pct": 20.4,
+            "increase_pct": 0.1,
+            "area_km2": 212,
+            "mean_db": -2.6
+          },
+          "4": {
+            "decrease_pct": 20.0,
+            "increase_pct": 0.0,
+            "area_km2": 208,
+            "mean_db": -2.6
+          }
+        },
+        "histogram": [
+          0.285,
+          0.307,
+          0.32,
+          0.328,
+          0.333,
+          0.325,
+          0.311,
+          0.286,
+          0.26,
+          0.227,
+          0.202,
+          0.174,
+          0.156,
+          0.129,
+          0.118,
+          0.104,
+          0.1,
+          0.1,
+          0.092,
+          0.096,
+          0.099,
+          0.103,
+          0.101,
+          0.128,
+          0.195,
+          0.32,
+          0.498,
+          0.71,
+          0.892,
+          1.0,
+          0.999,
+          0.884,
+          0.695,
+          0.486,
+          0.307,
+          0.173,
+          0.088,
+          0.043,
+          0.014,
+          0.01,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "series": [
+      {
+        "date": "2026-01-14",
+        "hh_db": -10.1,
+        "hv_db": -16.0
+      },
+      {
+        "date": "2026-10-19",
+        "hh_db": -22.5,
+        "hv_db": -30.2
+      },
+      {
+        "date": "2026-10-31",
+        "hh_db": -22.8,
+        "hv_db": -29.6
+      },
+      {
+        "date": "2026-11-12",
+        "hh_db": -22.2,
+        "hv_db": -29.8
+      }
+    ],
+    "exposure_points": [
+      {
+        "kind": "hospital",
+        "x_pct": 42.4,
+        "y_pct": 84.8
+      },
+      {
+        "kind": "hospital",
+        "x_pct": 74.7,
+        "y_pct": 33.9
+      },
+      {
+        "kind": "school",
+        "x_pct": 50.0,
+        "y_pct": 42.6
+      },
+      {
+        "kind": "school",
+        "x_pct": 84.2,
+        "y_pct": 49.1
+      },
+      {
+        "kind": "school",
+        "x_pct": 65.5,
+        "y_pct": 84.1
+      },
+      {
+        "kind": "school",
+        "x_pct": 80.0,
+        "y_pct": 88.3
+      },
+      {
+        "kind": "school",
+        "x_pct": 58.2,
+        "y_pct": 72.8
+      },
+      {
+        "kind": "school",
+        "x_pct": 58.0,
+        "y_pct": 34.8
+      },
+      {
+        "kind": "school",
+        "x_pct": 0.7,
+        "y_pct": 58.0
+      },
+      {
+        "kind": "school",
+        "x_pct": 19.5,
+        "y_pct": 64.8
+      },
+      {
+        "kind": "school",
+        "x_pct": 75.4,
+        "y_pct": 74.6
+      },
+      {
+        "kind": "population",
+        "x_pct": 70.7,
+        "y_pct": 67.0
+      },
+      {
+        "kind": "population",
+        "x_pct": 31.6,
+        "y_pct": 40.7
+      },
+      {
+        "kind": "population",
+        "x_pct": 23.4,
+        "y_pct": 78.5
+      },
+      {
+        "kind": "population",
+        "x_pct": 68.7,
+        "y_pct": 29.3
+      },
+      {
+        "kind": "population",
+        "x_pct": 84.9,
+        "y_pct": 36.5
+      },
+      {
+        "kind": "population",
+        "x_pct": 51.1,
+        "y_pct": 65.7
+      },
+      {
+        "kind": "population",
+        "x_pct": 45.5,
+        "y_pct": 69.1
+      },
+      {
+        "kind": "population",
+        "x_pct": 84.1,
+        "y_pct": 63.9
+      },
+      {
+        "kind": "population",
+        "x_pct": 46.4,
+        "y_pct": 80.9
+      },
+      {
+        "kind": "population",
+        "x_pct": 74.9,
+        "y_pct": 81.7
+      },
+      {
+        "kind": "population",
+        "x_pct": 40.4,
+        "y_pct": 95.7
+      },
+      {
+        "kind": "population",
+        "x_pct": 20.5,
+        "y_pct": 54.6
+      },
+      {
+        "kind": "population",
+        "x_pct": 17.1,
+        "y_pct": 57.0
+      },
+      {
+        "kind": "population",
+        "x_pct": 51.6,
+        "y_pct": 76.1
+      }
+    ]
+  }
+}

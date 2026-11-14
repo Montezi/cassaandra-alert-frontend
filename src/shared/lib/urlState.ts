@@ -38,3 +38,18 @@ export function useUrlParam(name: string): [string | null, (value: string | null
   const setValue = useCallback((next: string | null) => setUrlParam(name, next), [name]);
   return [value, setValue];
 }
+
+/** Current path ("/" or "/app"); re-renders when it changes. */
+export function usePathname(): string {
+  return useSyncExternalStore(subscribe, () => window.location.pathname);
+}
+
+/**
+ * Goes to another page of the app without reloading. `to` may carry a query
+ * string ("/app?hotspot=guaiba-rs"). Adds a history entry, so Back works.
+ */
+export function navigate(to: string): void {
+  window.history.pushState(null, '', to);
+  window.dispatchEvent(new Event(URL_CHANGE_EVENT));
+  window.scrollTo(0, 0);
+}

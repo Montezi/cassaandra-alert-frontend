@@ -1,0 +1,127 @@
+{
+  "metadata": {
+    "sample": true
+  },
+  "hotspot_id": "costa-peru",
+  "region": {
+    "pt": "Costa do Peru e Equador",
+    "en": "Coast of Peru and Ecuador"
+  },
+  "baseline_date": "2026-01-14",
+  "confidence": 0.64,
+  "low_coherence": false,
+  "passes": [
+    {
+      "date": "2026-10-17",
+      "affected_area_km2": 21
+    },
+    {
+      "date": "2026-10-29",
+      "affected_area_km2": 54
+    },
+    {
+      "date": "2026-11-10",
+      "affected_area_km2": 88
+    }
+  ],
+  "measured": [
+    {
+      "measure": {
+        "pt": "Sinal do radar (HH)",
+        "en": "Radar signal (HH)"
+      },
+      "value": {
+        "pt": "caiu 3,4 dB",
+        "en": "fell 3.4 dB"
+      },
+      "note": {
+        "pt": "Limite da regra: −3,1 dB. Água nova e lisa.",
+        "en": "Rule threshold: −3.1 dB. New, smooth water."
+      }
+    },
+    {
+      "measure": {
+        "pt": "Água permanente (JRC)",
+        "en": "Permanent water (JRC)"
+      },
+      "value": {
+        "pt": "não era água",
+        "en": "was not water"
+      },
+      "note": {
+        "pt": "Descarta rio e lagoa que já existiam.",
+        "en": "Rules out rivers and lagoons that already existed."
+      }
+    },
+    {
+      "measure": {
+        "pt": "Coerência",
+        "en": "Coherence"
+      },
+      "value": {
+        "pt": "caiu 0,41",
+        "en": "fell 0.41"
+      },
+      "note": {
+        "pt": "A superfície mudou entre as passagens.",
+        "en": "The surface changed between passes."
+      }
+    }
+  ],
+  "hypothesis": {
+    "text": {
+      "pt": "El Niño costeiro: o mar mais quente perto da costa traz chuva forte a uma região que costuma ser seca.",
+      "en": "Coastal El Niño: warmer sea near the coast brings heavy rain to a usually dry region."
+    },
+    "evidence": {
+      "pt": "180 mm em 30 dias, cerca de 6× a média de um litoral árido (GPM IMERG e CHIRPS).",
+      "en": "180 mm in 30 days, about 6× the average for an arid coast (GPM IMERG and CHIRPS)."
+    },
+    "strength": "moderate"
+  },
+  "exposure": [
+    {
+      "kind": "people",
+      "label": {
+        "pt": "Pessoas na área alagada",
+        "en": "People in the flooded area"
+      },
+      "value": {
+        "pt": "≈ 6.100",
+        "en": "≈ 6,100"
+      }
+    },
+    {
+      "kind": "health",
+      "label": {
+        "pt": "Hospitais e escolas",
+        "en": "Hospitals and schools"
+      },
+      "value": {
+        "pt": "1 e 4",
+        "en": "1 and 4"
+      }
+    },
+    {
+      "kind": "roads",
+      "label": {
+        "pt": "Estradas na área",
+        "en": "Roads in the area"
+      },
+      "value": {
+        "pt": "9 km",
+        "en": "9 km"
+      }
+    }
+  ],
+  "sources": [
+    "NISAR GCOV",
+    "Copernicus Sentinel-1",
+    "JRC",
+    "WorldPop",
+    "OpenStreetMap",
+    "GPM IMERG (NASA)"
+  ],
+  "scenes": {},
+  "technical": null
+}

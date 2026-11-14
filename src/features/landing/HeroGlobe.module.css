@@ -1,0 +1,181 @@
+.wrap {
+  display: flex;
+  flex: 1 1 26rem;
+  justify-content: center;
+  min-width: 0;
+}
+
+.globeBox {
+  position: relative;
+  width: min(35rem, 100%);
+  aspect-ratio: 1 / 1;
+}
+
+.orbit {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.orbitBlue,
+.orbitOrange {
+  fill: none;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+}
+
+.orbitBlue {
+  stroke: var(--color-brand-a1);
+}
+
+.orbitOrange {
+  stroke: var(--color-brand-a2);
+}
+
+.sun {
+  fill: var(--color-brand-a2);
+}
+
+.globe {
+  position: absolute;
+  inset: 7%;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.globeImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.sweep {
+  position: absolute;
+  inset: 0;
+  background: var(--scale-sweep);
+  animation: sweep 8s linear infinite;
+}
+
+@keyframes sweep {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.pin {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+.pin[data-cls='fire'] {
+  --pin: var(--color-class-fire);
+}
+
+.pin[data-cls='flood'] {
+  --pin: var(--color-class-flood);
+}
+
+.pin[data-cls='drought'] {
+  --pin: var(--color-class-drought);
+}
+
+.ping,
+.dot {
+  position: absolute;
+  left: -9px;
+  top: -9px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+}
+
+.ping {
+  border: 2px solid var(--pin);
+  animation: ping 2.4s ease-out infinite;
+}
+
+.dot {
+  border: 3px solid var(--color-on-image);
+  background: var(--pin);
+}
+
+@keyframes ping {
+  from {
+    transform: scale(0.7);
+    opacity: 0.85;
+  }
+  to {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+
+.pinLabel {
+  position: absolute;
+  top: -10px;
+  left: 16px;
+  color: var(--color-on-image);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  white-space: nowrap;
+  text-shadow: 0 1px 3px var(--color-overlay-bg);
+}
+
+.pin[data-side='left'] .pinLabel {
+  left: auto;
+  right: 16px;
+}
+
+.cass {
+  position: absolute;
+  left: -10%;
+  bottom: -8%;
+  width: 42%;
+  height: auto;
+}
+
+.card {
+  position: absolute;
+  right: -2%;
+  bottom: -4%;
+  width: 14.75rem;
+  padding: 0.875rem var(--space-4);
+  border: 1px solid var(--color-divider);
+  border-radius: 16px;
+  background: var(--color-surface);
+  box-shadow: 0 12px 32px var(--color-shadow);
+}
+
+.cardChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 3px 10px 3px 6px;
+  border-radius: var(--radius-pill);
+  background: var(--color-class-flood-soft);
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.cardTitle {
+  margin: var(--space-2) 0 2px;
+  font-family: var(--font-heading);
+  font-size: 1.0625rem;
+  font-weight: 800;
+}
+
+.cardText {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  line-height: 1.4;
+}
+
+@media (max-width: 40rem) {
+  .card {
+    display: none;
+  }
+}

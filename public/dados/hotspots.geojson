@@ -6,91 +6,217 @@
   "features": [
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [-121.5, 39.6] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.62,
+          33.45
+        ]
+      },
       "properties": {
         "id": "norte-fire-ca",
-        "name": { "pt": "Norte Fire, Califórnia (EUA)", "en": "Norte Fire, California (USA)" },
-        "enso_effect": null,
-        "dominant_class": null,
-        "affected_area_km2": null,
-        "confidence": null,
-        "last_pass": null,
-        "bbox": [-121.8, 39.4, -121.2, 39.8],
+        "name": {
+          "pt": "Norte Fire, San Clemente, Califórnia",
+          "en": "Norte Fire, San Clemente, California"
+        },
+        "short_name": {
+          "pt": "Califórnia, EUA",
+          "en": "California, USA"
+        },
+        "enso_effect": {
+          "pt": "inverno mais chuvoso",
+          "en": "wetter winter"
+        },
+        "dominant_class": "fire_deforestation",
+        "affected_area_km2": 2.3,
+        "confidence": 0.78,
+        "last_pass": "2026-11-12",
+        "bbox": [
+          -117.75,
+          33.38,
+          -117.5,
+          33.52
+        ],
         "layers": {}
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [-80.6, -5.2] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.63,
+          -5.19
+        ]
+      },
       "properties": {
         "id": "costa-peru",
-        "name": { "pt": "Costa do Peru", "en": "Coast of Peru" },
-        "enso_effect": { "pt": "chuva acima da média", "en": "above-average rainfall" },
-        "dominant_class": null,
-        "affected_area_km2": null,
-        "confidence": null,
-        "last_pass": null,
-        "bbox": [-81.0, -5.6, -80.2, -4.8],
+        "name": {
+          "pt": "Piura, costa norte do Peru",
+          "en": "Piura, northern coast of Peru"
+        },
+        "short_name": {
+          "pt": "Costa do Peru",
+          "en": "Coast of Peru"
+        },
+        "enso_effect": {
+          "pt": "El Niño costeiro, chuva forte",
+          "en": "coastal El Niño, heavy rain"
+        },
+        "dominant_class": "flood",
+        "affected_area_km2": 88,
+        "confidence": 0.64,
+        "last_pass": "2026-11-10",
+        "bbox": [
+          -80.9,
+          -5.45,
+          -80.35,
+          -4.95
+        ],
         "layers": {}
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [-61.5, 1.5] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -60.95,
+          -2.6
+        ]
+      },
       "properties": {
         "id": "norte-amazonia",
-        "name": { "pt": "Norte da Amazônia (RR/AM)", "en": "Northern Amazon (RR/AM, Brazil)" },
-        "enso_effect": { "pt": "chuva abaixo da média", "en": "below-average rainfall" },
-        "dominant_class": null,
-        "affected_area_km2": null,
-        "confidence": null,
-        "last_pass": null,
-        "bbox": [-63.0, 0.0, -60.0, 3.0],
+        "name": {
+          "pt": "Rio Negro, Amazonas",
+          "en": "Rio Negro, Amazonas (Brazil)"
+        },
+        "short_name": {
+          "pt": "Rio Negro, AM",
+          "en": "Rio Negro, Brazil"
+        },
+        "enso_effect": {
+          "pt": "seca",
+          "en": "drought"
+        },
+        "dominant_class": "drought",
+        "affected_area_km2": 146,
+        "confidence": 0.81,
+        "last_pass": "2026-11-11",
+        "bbox": [
+          -61.4,
+          -3.0,
+          -60.5,
+          -2.2
+        ],
         "layers": {}
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [-51.2, -30.0] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -51.2,
+          -30.0
+        ]
+      },
       "properties": {
         "id": "guaiba-rs",
-        "name": { "pt": "Lago Guaíba, RS", "en": "Guaíba Lake, RS (Brazil)" },
-        "enso_effect": { "pt": "chuva acima da média", "en": "above-average rainfall" },
-        "dominant_class": null,
-        "affected_area_km2": null,
-        "confidence": null,
-        "last_pass": null,
-        "bbox": [-51.3, -30.2, -51.0, -29.9],
+        "name": {
+          "pt": "Lago Guaíba, RS",
+          "en": "Guaíba Lake, RS (Brazil)"
+        },
+        "short_name": {
+          "pt": "Lago Guaíba",
+          "en": "Guaíba Lake"
+        },
+        "enso_effect": {
+          "pt": "chuva acima da média",
+          "en": "above-average rainfall"
+        },
+        "dominant_class": "flood",
+        "affected_area_km2": 212,
+        "confidence": 0.86,
+        "last_pass": "2026-11-12",
+        "bbox": [
+          -51.35,
+          -30.25,
+          -51.0,
+          -29.85
+        ],
         "layers": {}
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [27.8, -17.2] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.8,
+          -17.2
+        ]
+      },
       "properties": {
         "id": "kariba",
-        "name": { "pt": "Lago Kariba (Zâmbia/Zimbábue)", "en": "Lake Kariba (Zambia/Zimbabwe)" },
-        "enso_effect": { "pt": "chuva abaixo da média", "en": "below-average rainfall" },
-        "dominant_class": null,
-        "affected_area_km2": null,
-        "confidence": null,
-        "last_pass": null,
-        "bbox": [26.7, -18.1, 29.0, -16.4],
+        "name": {
+          "pt": "Lago Kariba, Zâmbia e Zimbábue",
+          "en": "Lake Kariba, Zambia and Zimbabwe"
+        },
+        "short_name": {
+          "pt": "Lago Kariba",
+          "en": "Lake Kariba"
+        },
+        "enso_effect": {
+          "pt": "mais seco até março",
+          "en": "drier until March"
+        },
+        "dominant_class": "drought",
+        "affected_area_km2": 64,
+        "confidence": 0.83,
+        "last_pass": "2026-11-08",
+        "bbox": [
+          26.7,
+          -18.1,
+          29.0,
+          -16.4
+        ],
         "layers": {}
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [114.0, -2.3] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          113.9,
+          -2.2
+        ]
+      },
       "properties": {
         "id": "borneo",
-        "name": { "pt": "Bornéu", "en": "Borneo" },
-        "enso_effect": { "pt": "chuva abaixo da média", "en": "below-average rainfall" },
-        "dominant_class": null,
-        "affected_area_km2": null,
-        "confidence": null,
-        "last_pass": null,
-        "bbox": [113.5, -2.8, 114.5, -1.8],
+        "name": {
+          "pt": "Kalimantan Central, Bornéu",
+          "en": "Central Kalimantan, Borneo"
+        },
+        "short_name": {
+          "pt": "Bornéu",
+          "en": "Borneo"
+        },
+        "enso_effect": {
+          "pt": "seca e fogo em turfeiras",
+          "en": "drought and peatland fires"
+        },
+        "dominant_class": "fire_deforestation",
+        "affected_area_km2": 310,
+        "confidence": 0.41,
+        "last_pass": "2026-11-07",
+        "bbox": [
+          113.5,
+          -2.6,
+          114.3,
+          -1.8
+        ],
         "layers": {}
       }
     }

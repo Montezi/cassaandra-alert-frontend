@@ -1,0 +1,30 @@
+.dialog {
+  width: calc(100% - 2 * var(--space-4));
+  max-height: calc(100dvh - 2 * var(--space-4));
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-xl);
+  background: var(--color-surface);
+  color: var(--color-text);
+  box-shadow: 0 24px 64px var(--color-shadow);
+}
+
+.dialog::backdrop {
+  background: var(--color-backdrop);
+}
+
+.md {
+  max-width: 64rem;
+}
+
+.xl {
+  max-width: 86rem;
+  height: calc(100dvh - 2 * var(--space-6));
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-height: inherit;
+}

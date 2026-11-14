@@ -1,0 +1,141 @@
+{
+  "metadata": {
+    "sample": true
+  },
+  "source": "snapshot",
+  "updated_at": "2026-11-14T09:00:00Z",
+  "forecasts": {
+    "norte-fire-ca": [
+      {
+        "date": "2026-11-15",
+        "precipitation_mm": 0
+      },
+      {
+        "date": "2026-11-16",
+        "precipitation_mm": 0
+      },
+      {
+        "date": "2026-11-17",
+        "precipitation_mm": 0
+      },
+      {
+        "date": "2026-11-18",
+        "precipitation_mm": 2
+      },
+      {
+        "date": "2026-11-19",
+        "precipitation_mm": 5
+      }
+    ],
+    "costa-peru": [
+      {
+        "date": "2026-11-15",
+        "precipitation_mm": 6
+      },
+      {
+        "date": "2026-11-16",
+        "precipitation_mm": 12
+      },
+      {
+        "date": "2026-11-17",
+        "precipitation_mm": 20
+      },
+      {
+        "date": "2026-11-18",
+        "precipitation_mm": 9
+      },
+      {
+        "date": "2026-11-19",
+        "precipitation_mm": 4
+      }
+    ],
+    "norte-amazonia": [
+      {
+        "date": "2026-11-15",
+        "precipitation_mm": 2
+      },
+      {
+        "date": "2026-11-16",
+        "precipitation_mm": 0
+      },
+      {
+        "date": "2026-11-17",
+        "precipitation_mm": 4
+      },
+      {
+        "date": "2026-11-18",
+        "precipitation_mm": 1
+      },
+      {
+        "date": "2026-11-19",
+        "precipitation_mm": 0
+      }
+    ],
+    "guaiba-rs": [
+      {
+        "date": "2026-11-15",
+        "precipitation_mm": 18
+      },
+      {
+        "date": "2026-11-16",
+        "precipitation_mm": 32
+      },
+      {
+        "date": "2026-11-17",
+        "precipitation_mm": 24
+      },
+      {
+        "date": "2026-11-18",
+        "precipitation_mm": 14
+      },
+      {
+        "date": "2026-11-19",
+        "precipitation_mm": 8
+      }
+    ],
+    "kariba": [
+      {
+        "date": "2026-11-15",
+        "precipitation_mm": 0
+      },
+      {
+        "date": "2026-11-16",
+        "precipitation_mm": 2
+      },
+      {
+        "date": "2026-11-17",
+        "precipitation_mm": 0
+      },
+      {
+        "date": "2026-11-18",
+        "precipitation_mm": 5
+      },
+      {
+        "date": "2026-11-19",
+        "precipitation_mm": 1
+      }
+    ],
+    "borneo": [
+      {
+        "date": "2026-11-15",
+        "precipitation_mm": 4
+      },
+      {
+        "date": "2026-11-16",
+        "precipitation_mm": 9
+      },
+      {
+        "date": "2026-11-17",
+        "precipitation_mm": 7
+      },
+      {
+        "date": "2026-11-18",
+        "precipitation_mm": 3
+      },
+      {
+        "date": "2026-11-19",
+        "precipitation_mm": 2
+      }
+    ]
+  }
+}

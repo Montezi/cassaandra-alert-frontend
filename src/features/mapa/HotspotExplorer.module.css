@@ -1,15 +1,33 @@
-/* Phone: map on top, list below. Wider screens: map left, list right. */
+/*
+ * Phone: map on top, then the panel, then the rail.
+ * Desktop (64rem+): rail | map | panel, each column scrolls on its own.
+ */
 .explorer {
   flex: 1;
   display: grid;
-  grid-template-rows: minmax(18rem, 55vh) auto;
+  grid-template-areas:
+    'map'
+    'panel'
+    'rail';
+  grid-template-rows: minmax(20rem, 55vh) auto auto;
   min-height: 0;
 }
 
+.explorer > :nth-child(1) {
+  grid-area: rail;
+  border-top: 1px solid var(--color-divider);
+}
+
 .mapArea {
+  grid-area: map;
   position: relative;
   min-height: 0;
-  border-bottom: 1px solid var(--color-divider);
+  overflow: hidden;
+  background: var(--color-surface-2);
+}
+
+.explorer > :nth-child(3) {
+  grid-area: panel;
 }
 
 .message {
@@ -24,14 +42,20 @@
   text-align: center;
 }
 
-@media (min-width: 48rem) {
+@media (min-width: 64rem) {
   .explorer {
-    grid-template-rows: none;
-    grid-template-columns: minmax(0, 1fr) 22rem;
+    grid-template-areas: 'rail map panel';
+    grid-template-columns: 16.5rem minmax(0, 1fr) 27.5rem;
+    grid-template-rows: minmax(0, 1fr);
   }
 
-  .mapArea {
-    border-bottom: 0;
+  .explorer[data-panel='closed'] {
+    grid-template-areas: 'rail map';
+    grid-template-columns: 16.5rem minmax(0, 1fr);
+  }
+
+  .explorer > :nth-child(1) {
+    border-top: 0;
     border-right: 1px solid var(--color-divider);
   }
 }

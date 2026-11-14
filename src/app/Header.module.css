@@ -2,32 +2,39 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
   gap: var(--space-2) var(--space-4);
   min-height: var(--header-height);
   padding: var(--space-2) var(--space-4);
+  border-bottom: 1px solid var(--color-divider);
   background: var(--color-header-bg);
   color: var(--color-header-text);
 }
 
-.brand {
-  display: flex;
-  flex-direction: column;
-}
-
-.name {
+.home {
   color: inherit;
-  font-size: var(--font-size-lg);
-  font-weight: 800;
+  text-decoration: none;
+  border-radius: var(--radius-sm);
 }
 
-.slogan {
-  font-family: var(--font-heading);
-  font-size: var(--font-size-sm);
+.divider {
+  display: none;
+  width: 1px;
+  height: 1.75rem;
+  background: var(--color-divider);
+}
+
+.spacer {
+  flex: 1;
 }
 
 .controls {
   display: flex;
   align-items: center;
   gap: var(--space-2);
+}
+
+@media (min-width: 48rem) {
+  .divider {
+    display: block;
+  }
 }

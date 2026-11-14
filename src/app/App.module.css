@@ -15,8 +15,15 @@
   outline: none;
 }
 
-/* Wider screens: the page fits the window; the hotspot list scrolls inside. */
-@media (min-width: 48rem) {
+.loading {
+  display: grid;
+  place-content: center;
+  min-height: 100dvh;
+  color: var(--color-text-muted);
+}
+
+/* Wider screens: the map page fits the window; rail and panel scroll inside. */
+@media (min-width: 64rem) {
   .layout {
     height: 100dvh;
   }

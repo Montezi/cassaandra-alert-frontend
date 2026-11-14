@@ -1,0 +1,125 @@
+{
+  "metadata": {
+    "sample": true
+  },
+  "hotspot_id": "kariba",
+  "region": {
+    "pt": "Sul da África",
+    "en": "Southern Africa"
+  },
+  "baseline_date": "2026-01-14",
+  "confidence": 0.83,
+  "low_coherence": false,
+  "passes": [
+    {
+      "date": "2026-10-15",
+      "affected_area_km2": 22
+    },
+    {
+      "date": "2026-10-27",
+      "affected_area_km2": 41
+    },
+    {
+      "date": "2026-11-08",
+      "affected_area_km2": 64
+    }
+  ],
+  "measured": [
+    {
+      "measure": {
+        "pt": "Sinal do radar (HH)",
+        "en": "Radar signal (HH)"
+      },
+      "value": {
+        "pt": "subiu 3,3 dB",
+        "en": "rose 3.3 dB"
+      },
+      "note": {
+        "pt": "Na margem do reservatório: a água recuou.",
+        "en": "At the reservoir's edge: the water receded."
+      }
+    },
+    {
+      "measure": {
+        "pt": "Água permanente (JRC)",
+        "en": "Permanent water (JRC)"
+      },
+      "value": {
+        "pt": "era água em 2025",
+        "en": "was water in 2025"
+      },
+      "note": {
+        "pt": "Confirma que a margem avançou.",
+        "en": "Confirms that the shore moved out."
+      }
+    },
+    {
+      "measure": {
+        "pt": "Chuva em 30 dias",
+        "en": "Rain in 30 days"
+      },
+      "value": {
+        "pt": "11 mm",
+        "en": "11 mm"
+      },
+      "note": {
+        "pt": "Abaixo do normal.",
+        "en": "Below normal."
+      }
+    }
+  ],
+  "hypothesis": {
+    "text": {
+      "pt": "Pouca chuva, comum no sul da África em anos de El Niño, somada ao uso da água para gerar energia.",
+      "en": "Little rain, common in southern Africa in El Niño years, plus water use for hydropower."
+    },
+    "evidence": {
+      "pt": "11 mm em 30 dias, 70% abaixo da média (CHIRPS), e a margem recuando nas três passagens.",
+      "en": "11 mm in 30 days, 70% below average (CHIRPS), and the shore receding in all three passes."
+    },
+    "strength": "moderate"
+  },
+  "exposure": [
+    {
+      "kind": "people",
+      "label": {
+        "pt": "Pessoas na margem",
+        "en": "People on the shore"
+      },
+      "value": {
+        "pt": "≈ 2.500",
+        "en": "≈ 2,500"
+      }
+    },
+    {
+      "kind": "power",
+      "label": {
+        "pt": "Hidrelétrica a jusante",
+        "en": "Downstream hydropower plant"
+      },
+      "value": {
+        "pt": "1",
+        "en": "1"
+      }
+    },
+    {
+      "kind": "drought",
+      "label": {
+        "pt": "Margem exposta",
+        "en": "Exposed shore"
+      },
+      "value": {
+        "pt": "64 km²",
+        "en": "64 km²"
+      }
+    }
+  ],
+  "sources": [
+    "NISAR GCOV",
+    "Copernicus Sentinel-1",
+    "JRC",
+    "GPM IMERG (NASA)"
+  ],
+  "scenes": {},
+  "technical": null
+}

@@ -1,20 +1,15 @@
 import 'maplibre-gl/dist/maplibre-gl.css';
-import { Map as MapLibreMap, NavigationControl, setWorkerUrl } from 'maplibre-gl';
+import { Map as MapLibreMap, Marker, NavigationControl, setWorkerUrl } from 'maplibre-gl';
 import workerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?url';
-import { useEffect, useEffectEvent, useRef, useState } from 'react';
+import { useEffect, useEffectEvent, useMemo, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';
-import type { HotspotCollection } from '../../shared/lib/hotspotSchema';
+import type { Hotspot } from '../../shared/lib/hotspotSchema';
 import { prefersReducedMotion } from '../../shared/lib/motion';
 import { useTheme } from '../../shared/theme/theme';
 import { BASEMAP_STYLES } from './basemap';
-import {
-  addHotspotLayers,
-  fitHotspot,
-  hasHotspotLayers,
-  highlightHotspot,
-  HOTSPOT_LAYER_ID,
-  updateHotspotData,
-} from './hotspotLayers';
+import { HotspotMarker } from './HotspotMarker';
+import { fitHotspot, fitWorld, type Overlay, setOverlay, WORLD_BOUNDS } from './hotspotLayers';
 import { MapUnavailable } from './MapUnavailable';
 import styles from './MapView.module.css';
 
@@ -33,23 +28,52 @@ const CONTROL_LABELS = [
 ] as const;
 
 type MapViewProps = {
-  hotspots: HotspotCollection;
+  /** Hotspots to draw (already filtered by the lenses). */
+  hotspots: Hotspot[];
   selectedId: string | null;
   onSelect: (id: string) => void;
+  /** Frame the selected hotspot on load (it came from a shared link). */
+  fitOnLoad: boolean;
+  overlay: Overlay | null;
 };
 
+/** A neighbor close on the right would cover this label: put it on the left. */
+function labelGoesLeft(hotspot: Hotspot, all: Hotspot[]): boolean {
+  const [lon, lat] = hotspot.geometry.coordinates;
+  return all.some(
+    ({
+      geometry: {
+        coordinates: [otherLon, otherLat],
+      },
+    }) => {
+      const dx = otherLon - lon;
+      return dx > 0 && dx < 30 && Math.abs(otherLat - lat) < 12;
+    },
+  );
+}
+
 /** World map with one marker per hotspot. Loaded on demand (React.lazy). */
-export default function MapView({ hotspots, selectedId, onSelect }: MapViewProps) {
+export default function MapView({
+  hotspots,
+  selectedId,
+  onSelect,
+  fitOnLoad,
+  overlay,
+}: MapViewProps) {
   const { t, i18n } = useTranslation();
   const theme = useTheme();
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<MapLibreMap | null>(null);
   const styleUrlRef = useRef<string | null>(null);
-  const hasFittedRef = useRef(false);
+  const lastSelectedRef = useRef(selectedId);
   const [failed, setFailed] = useState(false);
 
-  // Effect events read the latest props without re-creating the map.
-  const selectHotspot = useEffectEvent((id: string) => onSelect(id));
+  // One element per hotspot; MapLibre positions it, React renders into it.
+  const markerElements = useMemo(
+    () => new Map(hotspots.map((h) => [h.properties.id, document.createElement('div')])),
+    [hotspots],
+  );
+
   const initialOptions = useEffectEvent(() => ({
     style: BASEMAP_STYLES[theme],
     locale: {
@@ -59,13 +83,10 @@ export default function MapView({ hotspots, selectedId, onSelect }: MapViewProps
       'AttributionControl.ToggleAttribution': t('map.toggleAttribution'),
     },
   }));
-  const drawHotspots = useEffectEvent((map: MapLibreMap) => {
-    addHotspotLayers(map, hotspots);
-    highlightHotspot(map, selectedId);
-    const selected = hotspots.features.find((f) => f.properties.id === selectedId);
-    // Frame a hotspot from a shared link once; later style reloads keep the view.
-    if (selected && !hasFittedRef.current) fitHotspot(map, selected, false);
-    hasFittedRef.current = true;
+  const onStyleLoad = useEffectEvent((map: MapLibreMap) => setOverlay(map, overlay));
+  const onFirstLoad = useEffectEvent((map: MapLibreMap) => {
+    const selected = hotspots.find((h) => h.properties.id === selectedId);
+    if (fitOnLoad && selected) fitHotspot(map, selected, false);
   });
 
   // Create the map once.
@@ -79,8 +100,8 @@ export default function MapView({ hotspots, selectedId, onSelect }: MapViewProps
       map = new MapLibreMap({
         container,
         ...options,
-        center: [0, 10],
-        zoom: 1,
+        bounds: WORLD_BOUNDS,
+        fitBoundsOptions: { padding: 24 },
         attributionControl: { compact: true },
       });
     } catch (error) {
@@ -95,28 +116,37 @@ export default function MapView({ hotspots, selectedId, onSelect }: MapViewProps
     mapRef.current = map;
 
     map.addControl(new NavigationControl({ showCompass: false }), 'top-right');
-    map.on('style.load', () => drawHotspots(map));
-    map.on('click', HOTSPOT_LAYER_ID, (event) => {
-      const id: unknown = event.features?.[0]?.properties.id;
-      if (typeof id === 'string') selectHotspot(id);
-    });
-    map.on('mouseenter', HOTSPOT_LAYER_ID, () => {
-      map.getCanvas().style.cursor = 'pointer';
-    });
-    map.on('mouseleave', HOTSPOT_LAYER_ID, () => {
-      map.getCanvas().style.cursor = '';
-    });
+    map.on('style.load', () => onStyleLoad(map));
+    map.once('load', () => onFirstLoad(map));
     map.on('error', (event) => console.error('Map error:', event.error));
 
     return () => {
       map.remove();
       mapRef.current = null;
-      hasFittedRef.current = false;
     };
   }, []);
 
+  // Place the markers. They are DOM elements, so a basemap change keeps them.
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map) return;
+    const markers = hotspots.flatMap((h) => {
+      const element = markerElements.get(h.properties.id);
+      if (!element) return [];
+      return [new Marker({ element }).setLngLat(h.geometry.coordinates).addTo(map)];
+    });
+    return () => markers.forEach((marker) => marker.remove());
+  }, [hotspots, markerElements]);
+
+  // The selected marker stays above its neighbors.
+  useEffect(() => {
+    markerElements.forEach((element, id) => {
+      element.style.zIndex = id === selectedId ? '2' : '1';
+    });
+  }, [markerElements, selectedId]);
+
   // Switch the basemap with the theme. diff: false forces a full reload, so
-  // 'style.load' fires and the markers are drawn again with the new colors.
+  // 'style.load' fires and the overlay is added again.
   useEffect(() => {
     const map = mapRef.current;
     const url = BASEMAP_STYLES[theme];
@@ -127,15 +157,15 @@ export default function MapView({ hotspots, selectedId, onSelect }: MapViewProps
 
   useEffect(() => {
     const map = mapRef.current;
-    if (map && hasHotspotLayers(map)) updateHotspotData(map, hotspots);
-  }, [hotspots]);
+    if (map?.isStyleLoaded()) setOverlay(map, overlay);
+  }, [overlay]);
 
-  // Highlight and frame the selected hotspot.
+  // Frame a hotspot when the user picks one (not on the first render).
   useEffect(() => {
     const map = mapRef.current;
-    if (!map || !hasHotspotLayers(map)) return; // drawHotspots will do it.
-    highlightHotspot(map, selectedId);
-    const selected = hotspots.features.find((f) => f.properties.id === selectedId);
+    if (!map || lastSelectedRef.current === selectedId) return;
+    lastSelectedRef.current = selectedId;
+    const selected = hotspots.find((h) => h.properties.id === selectedId);
     if (selected) fitHotspot(map, selected, !prefersReducedMotion());
   }, [selectedId, hotspots]);
 
@@ -157,5 +187,33 @@ export default function MapView({ hotspots, selectedId, onSelect }: MapViewProps
   }, [t, i18n.resolvedLanguage]);
 
   if (!SUPPORTS_WEBGL2 || failed) return <MapUnavailable />;
-  return <div ref={containerRef} className={styles.map} />;
+  return (
+    <>
+      <div ref={containerRef} className={styles.map} />
+      <button
+        type="button"
+        className={styles.worldButton}
+        onClick={() => {
+          if (mapRef.current) fitWorld(mapRef.current, !prefersReducedMotion());
+        }}
+      >
+        {t('map.worldView')}
+      </button>
+      {hotspots.map((h) => {
+        const element = markerElements.get(h.properties.id);
+        return element
+          ? createPortal(
+              <HotspotMarker
+                hotspot={h.properties}
+                selected={h.properties.id === selectedId}
+                labelLeft={labelGoesLeft(h, hotspots)}
+                onSelect={onSelect}
+              />,
+              element,
+              h.properties.id,
+            )
+          : null;
+      })}
+    </>
+  );
 }

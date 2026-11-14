@@ -42,6 +42,8 @@ export const hotspotPropertiesSchema = z.object({
   /** Stable slug, also used in the URL (?hotspot=guaiba-rs). */
   id: z.string().regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, 'id must be a lowercase slug'),
   name: localizedTextSchema,
+  /** Optional short label for the map marker and the list ("Lago Guaíba"). */
+  short_name: localizedTextSchema.optional(),
   /** Expected El Niño effect in the region (context, not a measurement). */
   enso_effect: localizedTextSchema.nullable(),
   // Measured values: null until the pipeline fills them in.
