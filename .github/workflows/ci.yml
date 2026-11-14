@@ -42,5 +42,5 @@ jobs:
           # JSON key of a service account with the "Firebase Hosting Admin" role,
           # stored as a repository secret. Never commit it.
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-          projectId: alerta-cassandra # TODO: confirm once the Firebase project exists
+          projectId: cassaandra-alert
           channelId: live

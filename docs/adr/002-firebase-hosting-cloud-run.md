@@ -37,6 +37,7 @@ reach the browser. The app must use relative paths and open without login.
   replies must finish within that time.
 - New pipeline data reaches users only through a deploy from a new commit;
   the commit hash is what changes the `?v=` URLs.
-- `alerta-cassandra` in `.firebaserc` and `ci.yml` is a placeholder. Project
-  IDs are global, so the real ID may differ. Update both files when the
-  project is created.
+- The Google Cloud / Firebase project is `cassaandra-alert` (`.firebaserc`
+  and `ci.yml`). Hosting and both Cloud Run services must live in this
+  project, because Hosting rewrites only reach Cloud Run services of the
+  same project.
