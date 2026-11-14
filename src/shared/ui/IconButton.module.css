@@ -1,0 +1,26 @@
+.button {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.filled {
+  background: var(--color-surface-2);
+}
+
+.overlay {
+  background: var(--color-overlay-bg);
+  color: var(--color-overlay-text);
+}
+
+.overlay:focus-visible {
+  outline-color: var(--color-overlay-text);
+}

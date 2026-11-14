@@ -42,6 +42,40 @@
   --noite-borda: #5a7a90;
   --noite-divisor: #1c3d52;
 
+  /* Classes and charts (from the design prototype). Light / dark pairs. */
+  --azul-gelo: #eef3f7;
+  --noite-superficie-2: #123a56;
+  --pessego: #ffede5;
+  --noite-alerta: #3a2419;
+  --ambar: #e8a33d;
+  --ambar-claro: #f2b134;
+  --ambar-escuro: #8a5a05;
+  --ambar-suave: #fbefd9;
+  --noite-ambar: #3a3018;
+  --azul-cheia-claro: #4fa9e0;
+  --azul-cheia-suave: #e1eff8;
+  --vermelho-fogo-claro: #e5485c;
+  --vermelho-suave: #fbe1e4;
+  --noite-vermelho: #3d1c26;
+  --roxo: #7d5bc9;
+  --roxo-claro: #9b7be0;
+  --roxo-suave: #ece6f8;
+  --noite-roxo: #2a2550;
+  --cinza-estavel: #7d8e9e;
+  --cinza-estavel-claro: #8fa3b5;
+  --cinza-estavel-suave: #eef1f4;
+  --noite-estavel: #1e3a50;
+  --tinta-escura: #062437;
+  --queda: #c2362a;
+  --queda-claro: #ff7a59;
+  --aumento: #1f6fc0;
+  --aumento-claro: #5ab4ff;
+  --linha-hh: #0b6fa8;
+  --linha-hv: #b5790a;
+  --sobreposicao: rgb(6 36 55 / 85%);
+  --sombra: rgb(6 36 55 / 18%);
+  --sombra-forte: rgb(4 18 28 / 72%);
+
   /* Fonts (files bundled with @fontsource, see src/main.tsx) */
   --font-heading: 'Red Hat Display Variable', 'Red Hat Display', system-ui, sans-serif;
   --font-body: 'Red Hat Text Variable', 'Red Hat Text', system-ui, sans-serif;
@@ -62,7 +96,41 @@
   --radius-md: 8px;
   --radius-pill: 999px;
 
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+
   --header-height: 4rem;
+
+  /* Same in both themes: text and controls drawn on top of radar images. */
+  --color-overlay-bg: var(--sobreposicao);
+  --color-overlay-text: var(--cinza-neutro);
+  --color-backdrop: var(--sombra-forte);
+  --color-shadow: var(--sombra);
+  --color-expo-hospital: var(--vermelho-critico);
+  --color-expo-school: var(--ambar);
+  --color-expo-population: var(--laranja-alerta);
+  --color-expo-ink: var(--branco);
+  --color-expo-school-ink: var(--tinta-escura);
+  --color-on-image: var(--branco);
+  --color-alert-button-text: var(--tinta-escura);
+  --color-permanent-water: var(--azul-profundo);
+  --color-card-bg: var(--noite-cabecalho);
+  --color-card-text: var(--cinza-neutro);
+  --color-card-muted: var(--noite-texto-suave);
+
+  /* Color scales of the technical mode images (same in both themes). */
+  --scale-change: linear-gradient(90deg, #d6402b, #f2a33a 40%, #6b7780 50%, #6dd5f5 60%, #1f78d1);
+  --scale-gray: linear-gradient(90deg, #000000, #ffffff);
+  --scale-coherence: linear-gradient(90deg, #0a0a0a, #f2f2f2);
+  --scale-sweep: conic-gradient(
+    from 0deg,
+    rgb(79 169 224 / 0%) 0deg,
+    rgb(79 169 224 / 0%) 290deg,
+    rgb(79 169 224 / 32%) 357deg,
+    rgb(245 247 250 / 75%) 360deg
+  );
+  --color-brand-a1: var(--azul-medio);
+  --color-brand-a2: var(--laranja-alerta);
 }
 
 /* 2. Semantic tokens — light theme (default) */
@@ -78,8 +146,12 @@
   --color-border: var(--cinza-borda);
   --color-divider: var(--cinza-divisor);
 
-  --color-header-bg: var(--azul-profundo);
-  --color-header-text: var(--cinza-neutro);
+  --color-header-bg: var(--branco);
+  --color-header-text: var(--azul-profundo);
+  --color-surface-2: var(--azul-gelo);
+  --color-alert-soft: var(--pessego);
+  --color-band-bg: var(--azul-profundo);
+  --color-band-text: var(--cinza-neutro);
 
   --color-action-bg: var(--azul-medio-escuro);
   --color-action-text: var(--branco);
@@ -99,6 +171,34 @@
   --color-map-hotspot: var(--laranja-alerta);
   --color-map-hotspot-stroke: var(--azul-profundo);
   --color-map-hotspot-selected: var(--vermelho-critico);
+
+  /* Classes: marker fill, icon ink on the fill, soft background for chips. */
+  --color-class-flood: var(--azul-medio);
+  --color-class-flood-ink: var(--branco);
+  --color-class-flood-soft: var(--azul-cheia-suave);
+  --color-class-drought: var(--ambar);
+  --color-class-drought-ink: var(--tinta-escura);
+  --color-class-drought-soft: var(--ambar-suave);
+  --color-class-fire: var(--vermelho-critico);
+  --color-class-fire-ink: var(--branco);
+  --color-class-fire-soft: var(--vermelho-suave);
+  --color-class-deformation: var(--roxo);
+  --color-class-deformation-ink: var(--branco);
+  --color-class-deformation-soft: var(--roxo-suave);
+  --color-class-stable: var(--cinza-estavel);
+  --color-class-stable-ink: var(--branco);
+  --color-class-stable-soft: var(--cinza-estavel-suave);
+
+  --color-rain: var(--azul-medio);
+  --color-decrease: var(--queda);
+  --color-increase: var(--aumento);
+  --color-bar-off: var(--cinza-divisor);
+  --color-line-hh: var(--linha-hh);
+  --color-line-hv: var(--linha-hv);
+  --color-user-bubble: var(--azul-profundo);
+  --color-user-bubble-text: var(--cinza-neutro);
+  --color-toggle-on: var(--verde-geo-escuro);
+  --color-toggle-off: var(--cinza-borda);
 }
 
 /* 2. Semantic tokens — dark theme */
@@ -113,8 +213,12 @@
   --color-border: var(--noite-borda);
   --color-divider: var(--noite-divisor);
 
-  --color-header-bg: var(--noite-cabecalho);
+  --color-header-bg: var(--noite-superficie);
   --color-header-text: var(--cinza-neutro);
+  --color-surface-2: var(--noite-superficie-2);
+  --color-alert-soft: var(--noite-alerta);
+  --color-band-bg: var(--noite-cabecalho);
+  --color-band-text: var(--cinza-neutro);
 
   --color-action-bg: var(--azul-medio-claro);
   --color-action-text: var(--noite-fundo);
@@ -132,4 +236,31 @@
   --color-map-hotspot: var(--laranja-alerta);
   --color-map-hotspot-stroke: var(--cinza-neutro);
   --color-map-hotspot-selected: var(--vermelho-critico-claro);
+
+  --color-class-flood: var(--azul-cheia-claro);
+  --color-class-flood-ink: var(--tinta-escura);
+  --color-class-flood-soft: var(--noite-superficie-2);
+  --color-class-drought: var(--ambar-claro);
+  --color-class-drought-ink: var(--tinta-escura);
+  --color-class-drought-soft: var(--noite-ambar);
+  --color-class-fire: var(--vermelho-fogo-claro);
+  --color-class-fire-ink: var(--branco);
+  --color-class-fire-soft: var(--noite-vermelho);
+  --color-class-deformation: var(--roxo-claro);
+  --color-class-deformation-ink: var(--tinta-escura);
+  --color-class-deformation-soft: var(--noite-roxo);
+  --color-class-stable: var(--cinza-estavel-claro);
+  --color-class-stable-ink: var(--tinta-escura);
+  --color-class-stable-soft: var(--noite-estavel);
+
+  --color-rain: var(--azul-cheia-claro);
+  --color-decrease: var(--queda-claro);
+  --color-increase: var(--aumento-claro);
+  --color-bar-off: var(--noite-divisor);
+  --color-line-hh: var(--azul-cheia-claro);
+  --color-line-hv: var(--ambar-claro);
+  --color-user-bubble: var(--azul-cheia-claro);
+  --color-user-bubble-text: var(--tinta-escura);
+  --color-toggle-on: var(--verde-geo-claro);
+  --color-toggle-off: var(--noite-borda);
 }

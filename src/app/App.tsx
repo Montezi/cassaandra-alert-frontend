@@ -1,20 +1,28 @@
+import { lazy, Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
-import { HotspotExplorer } from '../features/mapa/HotspotExplorer';
+import { usePathname } from '../shared/lib/urlState';
 import styles from './App.module.css';
-import { Header } from './Header';
 
+// Two pages, each in its own chunk: the landing page does not download the
+// map, and the map page does not download the landing images.
+const LandingPage = lazy(() => import('../features/landing/LandingPage'));
+const MapPage = lazy(() => import('./MapPage'));
+
+/** "/app" (and anything under it) is the map; every other path is the landing page. */
 export function App() {
   const { t } = useTranslation();
+  const pathname = usePathname();
+  const isMap = pathname === '/app' || pathname.startsWith('/app/');
 
   return (
-    <div className={styles.layout}>
-      <a href="#main" className="skip-link">
-        {t('a11y.skipToContent')}
-      </a>
-      <Header />
-      <main id="main" className={styles.main} tabIndex={-1}>
-        <HotspotExplorer />
-      </main>
-    </div>
+    <Suspense
+      fallback={
+        <p role="status" className={styles.loading}>
+          {t('app.loading')}
+        </p>
+      }
+    >
+      {isMap ? <MapPage /> : <LandingPage />}
+    </Suspense>
   );
 }

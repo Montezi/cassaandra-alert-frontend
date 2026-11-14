@@ -2,33 +2,483 @@
   "app": {
     "name": "Alerta CassAAndra",
     "slogan": "Não é previsão. É precisão.",
-    "title": "Alerta CassAAndra — áreas alagadas e queimadas vistas por radar"
+    "title": "Alerta CassAAndra: áreas alagadas, secas e queimadas vistas por radar",
+    "loading": "Carregando…"
+  },
+  "brand": {
+    "descriptor": "ALERTA"
   },
   "a11y": {
     "skipToContent": "Pular para o conteúdo"
   },
   "header": {
+    "home": "Alerta CassAAndra, página inicial",
     "languageGroup": "Idioma",
     "themeDark": "Tema escuro"
   },
   "language": {
-    "pt": { "short": "PT", "name": "Português" },
-    "en": { "short": "EN", "name": "English" }
+    "pt": {
+      "short": "PT",
+      "name": "Português"
+    },
+    "en": {
+      "short": "EN",
+      "name": "English"
+    }
+  },
+  "common": {
+    "sampleData": "Dados de exemplo",
+    "illustrative": "Imagem ilustrativa."
+  },
+  "classes": {
+    "flood": "Cheia",
+    "drought": "Seca",
+    "fire_deforestation": "Fogo e desmatamento",
+    "deformation": "Deformação",
+    "stable": "Estável ou incerto"
+  },
+  "enso": {
+    "badge": "El Niño {{strength}}: RONI {{value}} °C",
+    "note": "{{source}}, {{season}}. Radar até {{date}}",
+    "strength": {
+      "neutral": "neutro",
+      "weak": "fraco",
+      "moderate": "moderado",
+      "strong": "forte",
+      "very_strong": "muito forte"
+    }
   },
   "hotspots": {
     "heading": "Hotspots",
     "loading": "Carregando hotspots…",
     "error": "Não foi possível carregar os hotspots. Verifique a conexão e tente de novo.",
     "retry": "Tentar de novo",
-    "sampleData": "Dados de exemplo, posições aproximadas",
-    "ensoEffect": "El Niño: {{effect}}"
+    "noClass": "ainda sem classificação"
+  },
+  "rail": {
+    "label": "Lentes e hotspots",
+    "lenses": "Lentes",
+    "comingSoon": "Em breve",
+    "soon": {
+      "deformation": "Deformação",
+      "moisture": "Umidade do solo"
+    },
+    "hiddenByLens": "oculto no mapa",
+    "askCass": "Perguntar ao Cass",
+    "askCassDetail": "Respostas com data e fonte"
   },
   "map": {
+    "pageTitle": "Mapa global de hotspots do El Niño",
     "label": "Mapa dos hotspots",
     "loading": "Carregando mapa…",
     "unavailable": "Não foi possível mostrar o mapa neste aparelho. Os hotspots estão na lista.",
     "zoomIn": "Aproximar",
     "zoomOut": "Afastar",
-    "toggleAttribution": "Mostrar créditos do mapa"
+    "toggleAttribution": "Mostrar créditos do mapa",
+    "worldView": "Ver o mundo todo"
+  },
+  "legend": {
+    "label": "Legenda",
+    "note": "Regiões sensíveis ao El Niño. Medimos a mudança, não a causa."
+  },
+  "panel": {
+    "label": "Painel do hotspot",
+    "sections": "Seções do painel",
+    "tab": "Painel",
+    "close": "Fechar painel",
+    "loading": "Carregando os dados de {{name}}…",
+    "errorTitle": "Não conseguimos carregar este hotspot.",
+    "errorText": "O mapa continua funcionando. Verifique a conexão e tente de novo.",
+    "confidenceLevel": "Confiança {{level}}",
+    "level": {
+      "high": "alta",
+      "medium": "média",
+      "low": "baixa"
+    },
+    "lowCoherence": {
+      "title": "Resultado pouco confiável.",
+      "text": "A coerência entre as passagens ficou baixa (fumaça densa ou chuva no dia). Use como indício e confira com o FIRMS."
+    },
+    "stale": {
+      "title": "Última passagem há {{days}} dias.",
+      "text": "O NISAR ainda não passou de novo por aqui. Mostramos a medição de {{date}}."
+    },
+    "askAbout": "Perguntar ao Cass sobre {{name}}"
+  },
+  "scenes": {
+    "label": "Imagens de antes e de agora",
+    "sensor": "Sensor",
+    "sensors": {
+      "nisar": {
+        "name": "NISAR",
+        "sub": "radar, banda L"
+      },
+      "sentinel1": {
+        "name": "Sentinel-1",
+        "sub": "radar, banda C"
+      },
+      "sentinel2": {
+        "name": "Sentinel-2",
+        "sub": "óptico"
+      }
+    },
+    "before": "Antes: {{date}}",
+    "now": "Agora: {{date}}",
+    "altBefore": "Imagem de {{date}}",
+    "altNow": "Imagem de {{date}}",
+    "slider": "Comparar a imagem de antes com a de agora",
+    "expand": "Expandir no modo técnico",
+    "openTechnical": "Abrir modo técnico: mudança, classes, coerência e exposição",
+    "polarization": "Polarização",
+    "pol": {
+      "hh": "HH",
+      "hv": "HV",
+      "rgb": "Falsa cor"
+    },
+    "caption": {
+      "hh": "NISAR banda L, HH: água lisa aparece escura.",
+      "hv": "NISAR banda L, HV: destaca a vegetação; a água fica quase preta.",
+      "rgb": "Falsa cor: vermelho = HH, verde = HV, azul = HH÷HV. Água em azul-escuro.",
+      "sentinel1": "Copernicus Sentinel-1, banda C: onda mais curta, não atravessa a copa das árvores.",
+      "sentinel2": "Copernicus Sentinel-2, óptico: as nuvens escondem a cheia. Por isso usamos radar."
+    },
+    "missingSensor": "Este sensor ainda não tem imagem para este hotspot.",
+    "noneTitle": "As imagens deste hotspot ainda não foram processadas.",
+    "noneText": "Os números abaixo já vêm do pipeline. As imagens chegam na próxima atualização."
+  },
+  "timeline": {
+    "label": "Passagens do NISAR (a cada 12 dias)"
+  },
+  "facts": {
+    "area": "Área afetada em {{date}}",
+    "confidence": "Confiança do modelo",
+    "lastPass": "Última passagem",
+    "enso": "El Niño na região",
+    "ensoUnknown": "sem efeito conhecido"
+  },
+  "exposure": {
+    "title": "Quem está na área afetada",
+    "note": "Cruzamento da área medida com WorldPop e OpenStreetMap."
+  },
+  "measured": {
+    "title": "Medido",
+    "titleClass": "Medido: por que é {{cls}}",
+    "lead": "Regras da árvore de decisão com os valores do radar."
+  },
+  "hypothesis": {
+    "title": "Hipótese: o que pode explicar",
+    "evidence": "Evidência:",
+    "strength": "Força da evidência",
+    "level": {
+      "weak": "fraca",
+      "moderate": "moderada",
+      "strong": "forte"
+    },
+    "disclaimer": "Hipótese é suposição com evidência, não prova de causa."
+  },
+  "forecast": {
+    "title": "Próximos dias",
+    "loading": "Carregando a previsão…",
+    "error": "A previsão não está disponível agora. O radar e o painel continuam funcionando.",
+    "chartLabel": "Chuva prevista: {{days}}",
+    "caption": "Chuva prevista em mm por dia. Fonte: {{source}}, atualizada em {{date}}.",
+    "source": {
+      "meteomatics": "Meteomatics",
+      "open-meteo": "Open-Meteo (reserva)",
+      "snapshot": "última previsão salva"
+    },
+    "fallbackServer": "A fonte principal não respondeu; usamos a reserva.",
+    "fallbackFile": "O serviço de previsão não respondeu. Mostramos a última previsão salva, com a data dela.",
+    "stale": "Previsão com mais de 3 dias: mostrada só como referência, sem gerar alerta.",
+    "alertTitle": "{{total}} mm previstos em {{days}} dias",
+    "alertText": "se somam à água que o radar já mediu. A área alagada pode crescer."
+  },
+  "sources": {
+    "title": "Fontes"
+  },
+  "alert": {
+    "open": "Enviar alerta pelo WhatsApp",
+    "title": "Alerta para WhatsApp",
+    "close": "Fechar alerta",
+    "intro": "O card e a mensagem saem no idioma escolhido. A Defesa Civil pode encaminhar para grupos e equipes de campo.",
+    "languageGroup": "Idioma do alerta",
+    "messageLabel": "Texto que acompanha o card",
+    "share": "Compartilhar no WhatsApp",
+    "copy": "Copiar mensagem",
+    "copied": "Mensagem copiada.",
+    "note": "O WhatsApp abre numa nova aba com a mensagem pronta. Você escolhe o contato ou grupo.",
+    "cardCaption": "Card em formato 4:5, legível na tela do celular.",
+    "imageAlt": "Imagem de radar em falsa cor da área afetada",
+    "descriptor": "ALERTA",
+    "when": "Radar NISAR, passagem de {{date}}",
+    "measured": {
+      "flood": "{{area}} km² de água nova",
+      "drought": "{{area}} km² de margem que secou",
+      "fire_deforestation": "{{area}} km² de vegetação queimada ou derrubada",
+      "deformation": "{{area}} km² com deformação do solo",
+      "stable": "{{area}} km² com mudança no sinal"
+    },
+    "rain": "{{total}} mm de chuva previstos nos próximos {{days}} dias",
+    "hypothesis": "Hipótese: {{text}} Não é prova de causa.",
+    "sources": "Fontes: {{sources}}.",
+    "messageTitle": "Alerta CassAAndra: {{name}}.",
+    "messageMeasured": "O radar NISAR mediu {{measured}} na passagem de {{date}}.",
+    "messageLink": "Mapa e fontes: {{link}}"
+  },
+  "technical": {
+    "title": "Modo técnico: {{name}}",
+    "subtitle": "Radar NISAR banda L, antes ({{before}}) e agora ({{now}}). Imagem ilustrativa, pixel de {{px}} m.",
+    "download": "Baixar imagem",
+    "close": "Fechar modo técnico",
+    "viewGroup": "Visualização",
+    "views": {
+      "curtain": {
+        "name": "Antes | Agora",
+        "sub": "cortina",
+        "help": "Arraste a cortina. Água lisa espelha o pulso do radar para longe do satélite e aparece escura; superfície rugosa aparece clara."
+      },
+      "change": {
+        "name": "Mudança",
+        "sub": "Δ em dB",
+        "help": "Cada pixel mostra quanto o sinal mudou entre o antes e a data escolhida. Suba o limiar para ignorar variações pequenas, como chuva no solo."
+      },
+      "classes": {
+        "name": "Classes",
+        "sub": "o que o modelo concluiu",
+        "help": "O resultado da árvore de decisão: água nova (cheia) separada da água que já existia, segundo a máscara JRC."
+      },
+      "coherence": {
+        "name": "Coerência",
+        "sub": "GUNW",
+        "help": "Compara a fase do sinal nas duas passagens. Perto de 1, nada mudou; perto de 0, a superfície mudou. Ajuda a confirmar mudanças com brilho parecido."
+      },
+      "exposure": {
+        "name": "Exposição",
+        "sub": "quem está na área",
+        "help": "Moradores, escolas e hospitais dentro da área alagada, cruzando WorldPop e OpenStreetMap com a máscara de cheia."
+      }
+    },
+    "alt": {
+      "before": "Radar antes",
+      "now": "Radar agora",
+      "curtain": "Radar antes e agora",
+      "change": "Mapa de mudança: em vermelho, onde o sinal do radar caiu",
+      "classes": "Classes: água nova em azul médio, água permanente em azul escuro",
+      "coherence": "Coerência entre as passagens: escuro onde a superfície mudou",
+      "exposure": "Área alagada com hospitais, escolas e moradores"
+    },
+    "tag": {
+      "curtain": "Antes | Agora",
+      "change": "Δ = agora − antes, HH",
+      "classes": "Classes",
+      "coherence": "Coerência do par",
+      "exposure": "Exposição"
+    },
+    "exposure": {
+      "hospital": "Hospital",
+      "school": "Escola",
+      "population": "Concentração de moradores"
+    },
+    "zoomIn": "Aproximar a imagem",
+    "zoomOut": "Afastar a imagem",
+    "zoomLevel": "Zoom {{zoom}}×",
+    "legend": {
+      "change": "Vermelho: o sinal caiu (água nova, perda de vegetação). Azul: o sinal subiu (água sob a floresta, solo mais úmido).",
+      "curtain": "Arraste para comparar. Água lisa espelha o pulso e aparece escura.",
+      "newWater": "Água nova: cheia",
+      "permanentWater": "Água permanente (JRC)",
+      "classes": "Resultado da árvore de decisão, célula a célula.",
+      "changed": "0 mudou",
+      "same": "1 igual",
+      "coherence": "Coerência do par de passagens (GUNW). Escuro: a superfície mudou entre as datas.",
+      "exposure": "WorldPop e OpenStreetMap sobre a área alagada."
+    },
+    "pass": "Passagem (agora)",
+    "threshold": "Limiar de mudança",
+    "measures": "Medidas",
+    "changeTitle": "Mudança entre {{before}} e {{now}}",
+    "decrease": "Queda de sinal",
+    "increase": "Aumento",
+    "meanDelta": "Δ médio",
+    "thresholdNote": "Limiar de {{threshold}} dB, ruído suavizado em 3×3.",
+    "histogramTitle": "Distribuição de Δ",
+    "histogramLabel": "Histograma da mudança em dB: a maior parte dos pixels fica perto de zero e há uma cauda de queda forte, a área alagada.",
+    "seriesTitle": "Série no ponto marcado",
+    "seriesLabel": "Série no ponto: HH vai de {{hhFrom}} para {{hhTo}} dB e HV de {{hvFrom}} para {{hvTo}} dB.",
+    "seriesNote": "Linha cheia HH ({{hh}}), tracejada HV ({{hv}}). Média 5×5 em volta do ponto branco.",
+    "howToRead": "Como ler esta vista"
+  },
+  "cass": {
+    "name": "Cass",
+    "loading": "Abrindo o chat…",
+    "introTitle": "Oi, eu sou o Cass",
+    "introText": "Respondo só com o que o radar e as ferramentas mediram, sempre com data e fonte. Pergunte em português ou inglês.",
+    "demoNotice": "Modo demonstração: o agente ainda não está no ar. As respostas são montadas a partir dos dados do painel, sem IA.",
+    "suggestionsLabel": "Perguntas para começar ({{name}})",
+    "suggestions": {
+      "changed": "O que mudou em {{name}}?",
+      "largest": "Qual hotspot tem mais área afetada?",
+      "rain": "Vai chover mais nos próximos dias?",
+      "whyClass": "Por que o modelo chegou a essa classe?",
+      "cause": "O que pode ter causado isso?"
+    },
+    "log": "Conversa",
+    "thinking": "O Cass está consultando os dados",
+    "errorTitle": "O Cass não conseguiu responder.",
+    "errorText": "O agente não respondeu a tempo. O mapa e o painel continuam funcionando.",
+    "retry": "Perguntar de novo",
+    "inputLabel": "Pergunte ao Cass",
+    "placeholder": "Pergunte sobre um hotspot…",
+    "send": "Enviar pergunta",
+    "disclaimer": "O Cass usa só os dados do app. Confira as fontes antes de decidir.",
+    "demo": {
+      "changed": "Entre {{from}} e {{to}}, o radar mediu **{{area}} km²** de {{cls}} em {{name}}.",
+      "hypothesis": "**Minha hipótese:** {{text}} Evidência {{strength}}. É suposição, não prova de causa.",
+      "evidence": "Evidência: {{text}}",
+      "confidence": "Confiança {{value}}",
+      "largest": "**{{name}}** tem a maior área afetada: **{{area}} km²** ({{cls}}) na última passagem.",
+      "ranking": "As três maiores: {{list}}.",
+      "rain": "A previsão soma **{{total}} mm nos próximos {{days}} dias**, com pico de {{peak}} mm em {{day}}.",
+      "rainNote": "Previsão do tempo tem incerteza maior que a medição do radar.",
+      "snapshotSource": "Previsão salva em {{date}}",
+      "whyClass": "Em {{name}}, a árvore de decisão chegou a **{{cls}}** com estas regras:",
+      "noData": "Ainda não tenho dados suficientes sobre {{name}} para responder.",
+      "unknown": "No modo demonstração respondo às perguntas sugeridas acima. Quando o agente estiver no ar, respondo perguntas livres."
+    }
+  },
+  "landing": {
+    "openMap": "Abrir o mapa de hotspots",
+    "openMapShort": "Abrir o mapa",
+    "nav": {
+      "label": "Principal",
+      "lenses": "O que medimos",
+      "how": "Como funciona",
+      "radar": "O radar",
+      "validation": "Validação"
+    },
+    "hero": {
+      "line1": "Não é previsão.",
+      "line2": "É precisão.",
+      "lead": "O Alerta CassAAndra transforma o que o radar NISAR mede na superfície em mapas que você entende e usa: onde a água subiu, onde a terra secou, onde a floresta queimou. Mesmo sob nuvens e fumaça.",
+      "howRadar": "Como o radar enxerga",
+      "note": "Separamos o que o radar mede do que supomos. Cada hipótese vem com a evidência e a força dela."
+    },
+    "globe": {
+      "label": "Globo com as Américas e quatro hotspots monitorados: fogo na Califórnia, cheia na costa do Peru, seca no norte da Amazônia e cheia no Lago Guaíba",
+      "pins": {
+        "california": "Califórnia, EUA",
+        "peru": "Costa do Peru",
+        "amazon": "Norte da Amazônia",
+        "guaiba": "Lago Guaíba"
+      },
+      "cassAlt": "Cass, o mascote, segurando um marcador de localização sobre um mapa",
+      "cardTitle": "Lago Guaíba, RS",
+      "cardText": "Água nova onde antes havia campo, medida na passagem mais recente."
+    },
+    "lenses": {
+      "title": "Três lentes para ler o que mudou no chão",
+      "lead": "Cada lente liga uma camada do mapa. Cor nunca aparece sozinha: toda classe tem ícone e nome.",
+      "flood": {
+        "text": "Água nova e lisa devolve pouco sinal ao radar. Onde o rio transbordou, a imagem escurece.",
+        "source": "Medido com: NISAR GCOV, polarização HH"
+      },
+      "drought": {
+        "text": "Várzeas e reservatórios que encolhem voltam a refletir sinal. A margem avança sobre o que era água.",
+        "source": "Medido com: NISAR GCOV e máscara de água JRC"
+      },
+      "fire_deforestation": {
+        "text": "Sem copa, o radar perde o eco das árvores. A cicatriz aparece mesmo debaixo de fumaça.",
+        "source": "Medido com: NISAR GCOV, polarização HV"
+      },
+      "soon": "Em breve: deformação do solo (GUNW) e umidade do solo."
+    },
+    "how": {
+      "title": "Do satélite ao alerta em cinco passos",
+      "before": "Janeiro de 2026",
+      "now": "12 de novembro de 2026",
+      "altBefore": "Imagem de radar de janeiro de 2026: o lago e um rio estreito aparecem escuros",
+      "altNow": "Imagem de radar de 12 de novembro de 2026: a área escura de água cresceu e cobriu o entorno do lago",
+      "caption": "Lago Guaíba, RS. No radar, água lisa devolve pouco sinal e aparece escura. Imagem ilustrativa.",
+      "steps": {
+        "search": {
+          "title": "Busca",
+          "text": "Encontramos as passagens do NISAR antes (início de 2026) e agora em cada hotspot."
+        },
+        "crop": {
+          "title": "Recorte",
+          "text": "Baixamos só a área do hotspot, não o arquivo inteiro de vários GB."
+        },
+        "measure": {
+          "title": "Medição",
+          "text": "Calculamos a variação do sinal (HH e HV), a coerência e a chuva acumulada."
+        },
+        "classify": {
+          "title": "Classificação",
+          "text": "Uma árvore de decisão rotula cada célula: cheia, seca, fogo, deformação ou estável."
+        },
+        "explain": {
+          "title": "Explicação",
+          "text": "O Cass separa o que foi medido da hipótese sobre a causa, sempre com data e fonte."
+        }
+      }
+    },
+    "radar": {
+      "title": "Como o radar enxerga através das nuvens",
+      "lband": {
+        "title": "Banda L: ondas longas",
+        "text": "A onda do NISAR tem cerca de 24 cm e atravessa nuvem, chuva e fumaça. Funciona de dia e de noite."
+      },
+      "hv": {
+        "title": "Polarização HV: o eco das árvores",
+        "text": "A onda sai horizontal e volta vertical quando bate em galhos e folhas. Se a floresta some, esse eco cai."
+      },
+      "coherence": {
+        "title": "Coerência: o que continua igual",
+        "text": "Comparamos duas passagens. O que não mudou tem coerência alta; água, fogo e obra derrubam o valor."
+      }
+    },
+    "brand": {
+      "title": "Dois A que, juntos, formam um M",
+      "story": "Somos brasileiras. Em maio de 2024, vimos o Guaíba subir como nunca antes registrado e Porto Alegre debaixo d'água. Por isso ele é o primeiro lugar que o Cass acompanha. Mas o radar não tem fronteira: o mesmo método mede o fogo na Califórnia e a seca no sul da África.",
+      "symbol": "O símbolo é relevo, antena e alerta ao mesmo tempo. Os dois A são Ana e Aline; onde eles se cruzam nasce o M de Mirian. Em volta, a órbita do radar varrendo o planeta.",
+      "symbolAlt": "Símbolo do Alerta CassAAndra: dois A que se cruzam formando um M, dentro de uma órbita azul e laranja",
+      "promiseTitle": "O combinado do Cass:",
+      "promise": "ele separa o que mediu do que supõe, mostra data e fonte e avisa quando a medição não é confiável."
+    },
+    "validation": {
+      "title": "Validação",
+      "lead": "Conferimos o classificador com dados de referência independentes em pelo menos um hotspot.",
+      "reference": "Referência",
+      "checks": "O que confere",
+      "precision": "Precisão",
+      "pending": "a calcular",
+      "rows": {
+        "jrc": {
+          "name": "JRC Global Surface Water",
+          "checks": "Cheia e seca"
+        },
+        "sentinel1": {
+          "name": "Copernicus Sentinel-1",
+          "checks": "Cheia em área aberta, com radar em banda C"
+        },
+        "deter": {
+          "name": "DETER (INPE)",
+          "checks": "Desmatamento"
+        },
+        "firms": {
+          "name": "FIRMS (NASA)",
+          "checks": "Focos de fogo"
+        }
+      }
+    },
+    "cta": {
+      "title": "O radar não tem fronteira",
+      "text": "Do Guaíba à Califórnia, do Rio Negro a Bornéu: o mesmo método, em qualquer lugar por onde o NISAR passa.",
+      "cassAlt": "Cass abraçando o planeta Terra"
+    },
+    "footer": {
+      "data": "Dados: NISAR (NASA e ISRO) via ASF, GPM IMERG e FIRMS (NASA), NOAA CPC (RONI), CHIRPS, Copernicus Sentinel-1 e 2, ESA WorldCover, JRC Global Surface Water, DETER/INPE, WorldPop, OpenStreetMap, Meteomatics e Open-Meteo. Mapa base: OpenFreeMap e OpenStreetMap.",
+      "ai": "Código aberto no GitHub. O Cass e o símbolo da marca são imagens geradas por IA. Os números do app são dados de exemplo até o pipeline publicar os reais."
+    }
   }
 }

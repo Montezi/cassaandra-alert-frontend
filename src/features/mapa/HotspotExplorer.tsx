@@ -1,10 +1,13 @@
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { type Lens, isVisible, parseLenses, serializeLenses } from '../../shared/lib/classes';
 import { useUrlParam } from '../../shared/lib/urlState';
 import { Button } from '../../shared/ui/Button';
+import { HotspotPanel, type PanelTab } from '../painel/HotspotPanel';
 import styles from './HotspotExplorer.module.css';
-import { HotspotList } from './HotspotList';
+import { Legend } from './Legend';
 import { MapUnavailable } from './MapUnavailable';
+import { Rail } from './Rail';
 import { useHotspots } from './useHotspots';
 
 // MapLibre is ~1 MB, so it loads in its own chunk: on slow 4G the header and
@@ -17,11 +20,22 @@ const MapView = lazy(() =>
   }),
 );
 
-/** Map + hotspot list. The selected hotspot lives in the URL (?hotspot=id). */
+/** Opened when the link has no ?hotspot=: the team's first hotspot. */
+const DEFAULT_HOTSPOT = 'guaiba-rs';
+
+/**
+ * The map page: rail (lenses + list), map and the hotspot panel.
+ * Shared state lives in the URL: ?hotspot=guaiba-rs&lenses=flood,drought
+ */
 export function HotspotExplorer() {
   const { t } = useTranslation();
   const { state, retry } = useHotspots();
   const [hotspotParam, setHotspotParam] = useUrlParam('hotspot');
+  const [lensesParam, setLensesParam] = useUrlParam('lenses');
+  const [panelClosed, setPanelClosed] = useState(false);
+  const [tab, setTab] = useState<PanelTab>('panel');
+  // Read once: did the page open from a link that names a hotspot?
+  const [openedWithHotspot] = useState(() => hotspotParam !== null);
 
   if (state.status === 'loading') {
     return (
@@ -41,13 +55,39 @@ export function HotspotExplorer() {
   }
 
   const hotspots = state.data;
+  const features = hotspots.features;
+  const lenses = parseLenses(lensesParam);
   // Ignore ids in the URL that do not exist (old or mistyped links).
-  const selectedId = hotspots.features.some((f) => f.properties.id === hotspotParam)
-    ? hotspotParam
-    : null;
+  const fromUrl = features.find((f) => f.properties.id === hotspotParam);
+  const fallback = features.find((f) => f.properties.id === DEFAULT_HOTSPOT) ?? features[0];
+  const selected = panelClosed ? undefined : (fromUrl ?? fallback);
+  const visible = features.filter((f) => isVisible(f.properties.dominant_class, lenses));
+
+  function select(id: string) {
+    setPanelClosed(false);
+    setHotspotParam(id);
+  }
+
+  function toggleLens(lens: Lens) {
+    const next = lenses.includes(lens) ? lenses.filter((l) => l !== lens) : [...lenses, lens];
+    setLensesParam(serializeLenses(next));
+  }
+
+  function openChat() {
+    setPanelClosed(false);
+    setTab('chat');
+  }
 
   return (
-    <div className={styles.explorer}>
+    <div className={styles.explorer} data-panel={selected ? 'open' : 'closed'}>
+      <Rail
+        hotspots={hotspots}
+        selectedId={selected?.properties.id ?? null}
+        onSelect={select}
+        lenses={lenses}
+        onToggleLens={toggleLens}
+        onAskCass={openChat}
+      />
       <div className={styles.mapArea}>
         <Suspense
           fallback={
@@ -56,10 +96,26 @@ export function HotspotExplorer() {
             </p>
           }
         >
-          <MapView hotspots={hotspots} selectedId={selectedId} onSelect={setHotspotParam} />
+          <MapView
+            hotspots={visible}
+            selectedId={selected?.properties.id ?? null}
+            onSelect={select}
+            fitOnLoad={openedWithHotspot}
+            overlay={null}
+          />
         </Suspense>
+        <Legend />
       </div>
-      <HotspotList hotspots={hotspots} selectedId={selectedId} onSelect={setHotspotParam} />
+      {selected && (
+        <HotspotPanel
+          key={selected.properties.id}
+          hotspot={selected}
+          allHotspots={hotspots}
+          tab={tab}
+          onTabChange={setTab}
+          onClose={() => setPanelClosed(true)}
+        />
+      )}
     </div>
   );
 }

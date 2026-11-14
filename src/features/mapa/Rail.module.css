@@ -1,0 +1,171 @@
+.rail {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  padding: var(--space-4);
+  background: var(--color-surface);
+  overflow-y: auto;
+}
+
+.heading {
+  margin: 0 0 var(--space-2) var(--space-1);
+  color: var(--color-text-muted);
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 700;
+}
+
+.lenses,
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lens,
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.375rem var(--space-2);
+  border: 0;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--color-text);
+  text-align: left;
+  cursor: pointer;
+}
+
+.lens[aria-checked='false'] .lensIcon {
+  opacity: 0.55;
+}
+
+.lensIcon,
+.soonIcon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 10px;
+  background: var(--class);
+  color: var(--class-ink);
+}
+
+.lensName {
+  flex: 1;
+}
+
+/* Switch: position of the knob shows the state, not only its color. */
+.track {
+  position: relative;
+  flex: none;
+  width: 2.375rem;
+  height: 1.375rem;
+  border-radius: var(--radius-pill);
+  background: var(--color-toggle-off);
+}
+
+.knob {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background: var(--color-surface);
+  transition: left 150ms ease;
+}
+
+.lens[aria-checked='true'] .track {
+  background: var(--color-toggle-on);
+}
+
+.lens[aria-checked='true'] .knob {
+  left: 19px;
+}
+
+.soon {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 2.75rem;
+  padding: 0.375rem var(--space-2);
+  color: var(--color-text-muted);
+}
+
+.soonIcon {
+  border: 1.5px dashed var(--color-border);
+  background: transparent;
+  color: inherit;
+}
+
+.listHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.item[aria-current='true'] {
+  background: var(--color-surface-2);
+  box-shadow: inset 3px 0 0 var(--class);
+}
+
+.dot {
+  flex: none;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  background: var(--class);
+}
+
+.itemText {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.itemName {
+  font-weight: 700;
+}
+
+.itemDetail {
+  color: var(--color-text-muted);
+  font-size: 0.8125rem;
+}
+
+.ask {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: auto;
+  padding: var(--space-3);
+  border: 0;
+  border-radius: 16px;
+  background: var(--color-surface-2);
+  color: var(--color-text);
+  text-align: left;
+  cursor: pointer;
+}
+
+.askImage {
+  flex: none;
+  width: 3rem;
+  height: auto;
+}
+
+.askTitle {
+  display: block;
+}
+
+.askDetail {
+  color: var(--color-text-muted);
+  font-size: 0.8125rem;
+}

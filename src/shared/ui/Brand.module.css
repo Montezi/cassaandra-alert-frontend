@@ -1,0 +1,48 @@
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: inherit;
+}
+
+.symbol {
+  width: auto;
+  height: 2.25rem;
+}
+
+.md .symbol {
+  height: 2.75rem;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.descriptor {
+  font-family: var(--font-heading);
+  font-size: 0.6875rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+}
+
+.name {
+  font-family: var(--font-heading);
+  font-size: 1.1875rem;
+  font-weight: 900;
+}
+
+.md .name {
+  font-size: 1.375rem;
+}
+
+/* Logotype colors: a brand name has no contrast requirement (WCAG 1.4.3). */
+.a1 {
+  color: var(--color-brand-a1);
+}
+
+.a2 {
+  color: var(--color-brand-a2);
+}
