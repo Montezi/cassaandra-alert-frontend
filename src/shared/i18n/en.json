@@ -14,5 +14,21 @@
   "language": {
     "pt": { "short": "PT", "name": "Português" },
     "en": { "short": "EN", "name": "English" }
+  },
+  "hotspots": {
+    "heading": "Hotspots",
+    "loading": "Loading hotspots…",
+    "error": "Could not load the hotspots. Check your connection and try again.",
+    "retry": "Try again",
+    "sampleData": "Sample data, approximate positions",
+    "ensoEffect": "El Niño: {{effect}}"
+  },
+  "map": {
+    "label": "Hotspot map",
+    "loading": "Loading map…",
+    "unavailable": "The map cannot be shown on this device. The hotspots are in the list.",
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out",
+    "toggleAttribution": "Show map credits"
   }
 }

@@ -24,4 +24,9 @@ export default defineConfig({
   define: {
     __BUILD_ID__: JSON.stringify(buildId()),
   },
+  build: {
+    // maplibre-gl alone is ~1.1 MB minified (~290 kB gzip) and already loads
+    // in its own lazy chunk; warn only above that.
+    chunkSizeWarningLimit: 1100,
+  },
 });
