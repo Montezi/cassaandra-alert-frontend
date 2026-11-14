@@ -25,9 +25,13 @@ reach the browser. The app must use relative paths and open without login.
   (`immutable`), and `index.html` is never cached. The app requests pipeline
   files as `/dados/<file>?v=<commit>`, so every deploy gets fresh URLs.
 - CI (GitHub Actions) runs lint, typecheck and build on pull requests and on
-  `main`. Deploy is manual (`workflow_dispatch` on `main`) until the Cloud Run
-  services exist, because Firebase rejects rewrites to missing services. The
-  service account key is the `FIREBASE_SERVICE_ACCOUNT` repository secret.
+  `main`. **Every push to `main` deploys** to Firebase Hosting (live channel)
+  once those checks pass. A manual run (`workflow_dispatch` on `main`)
+  redeploys without a new commit.
+- The deploy uses a service account key stored as the
+  `FIREBASE_SERVICE_ACCOUNT` repository secret. The account has the roles
+  Firebase Hosting Admin, Cloud Run Viewer (Firebase checks the services
+  behind the `/api` rewrites) and API Keys Viewer.
 
 ## Consequences
 
@@ -35,8 +39,13 @@ reach the browser. The app must use relative paths and open without login.
   the dev proxy) and must route it.
 - Hosting gives up on a Cloud Run request after 60 seconds, so agent
   replies must finish within that time.
+- Merging into `main` publishes to production. Keep `main` deployable, and
+  review changes in pull requests first.
 - New pipeline data reaches users only through a deploy from a new commit;
   the commit hash is what changes the `?v=` URLs.
+- Firebase refuses to deploy rewrites to Cloud Run services that do not
+  exist, so `agente` and `clima` must stay deployed (even as sample
+  containers).
 - The Google Cloud / Firebase project is `cassaandra-alert` (`.firebaserc`
   and `ci.yml`). Hosting and both Cloud Run services must live in this
   project, because Hosting rewrites only reach Cloud Run services of the
