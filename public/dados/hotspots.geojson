@@ -1,0 +1,98 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "sample": true
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-121.5, 39.6] },
+      "properties": {
+        "id": "norte-fire-ca",
+        "name": { "pt": "Norte Fire, Califórnia (EUA)", "en": "Norte Fire, California (USA)" },
+        "enso_effect": null,
+        "dominant_class": null,
+        "affected_area_km2": null,
+        "confidence": null,
+        "last_pass": null,
+        "bbox": [-121.8, 39.4, -121.2, 39.8],
+        "layers": {}
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-80.6, -5.2] },
+      "properties": {
+        "id": "costa-peru",
+        "name": { "pt": "Costa do Peru", "en": "Coast of Peru" },
+        "enso_effect": { "pt": "chuva acima da média", "en": "above-average rainfall" },
+        "dominant_class": null,
+        "affected_area_km2": null,
+        "confidence": null,
+        "last_pass": null,
+        "bbox": [-81.0, -5.6, -80.2, -4.8],
+        "layers": {}
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-61.5, 1.5] },
+      "properties": {
+        "id": "norte-amazonia",
+        "name": { "pt": "Norte da Amazônia (RR/AM)", "en": "Northern Amazon (RR/AM, Brazil)" },
+        "enso_effect": { "pt": "chuva abaixo da média", "en": "below-average rainfall" },
+        "dominant_class": null,
+        "affected_area_km2": null,
+        "confidence": null,
+        "last_pass": null,
+        "bbox": [-63.0, 0.0, -60.0, 3.0],
+        "layers": {}
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-51.2, -30.0] },
+      "properties": {
+        "id": "guaiba-rs",
+        "name": { "pt": "Lago Guaíba, RS", "en": "Guaíba Lake, RS (Brazil)" },
+        "enso_effect": { "pt": "chuva acima da média", "en": "above-average rainfall" },
+        "dominant_class": null,
+        "affected_area_km2": null,
+        "confidence": null,
+        "last_pass": null,
+        "bbox": [-51.3, -30.2, -51.0, -29.9],
+        "layers": {}
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [27.8, -17.2] },
+      "properties": {
+        "id": "kariba",
+        "name": { "pt": "Lago Kariba (Zâmbia/Zimbábue)", "en": "Lake Kariba (Zambia/Zimbabwe)" },
+        "enso_effect": { "pt": "chuva abaixo da média", "en": "below-average rainfall" },
+        "dominant_class": null,
+        "affected_area_km2": null,
+        "confidence": null,
+        "last_pass": null,
+        "bbox": [26.7, -18.1, 29.0, -16.4],
+        "layers": {}
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [114.0, -2.3] },
+      "properties": {
+        "id": "borneo",
+        "name": { "pt": "Bornéu", "en": "Borneo" },
+        "enso_effect": { "pt": "chuva abaixo da média", "en": "below-average rainfall" },
+        "dominant_class": null,
+        "affected_area_km2": null,
+        "confidence": null,
+        "last_pass": null,
+        "bbox": [113.5, -2.8, 114.5, -1.8],
+        "layers": {}
+      }
+    }
+  ]
+}

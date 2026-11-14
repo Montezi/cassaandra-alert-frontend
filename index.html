@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="claro">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Alerta CassAAndra</title>
+    <script>
+      // Applies the theme before React loads, so the page does not flash.
+      // Keep in sync with src/shared/theme/theme.ts (same key and values).
+      (function () {
+        var theme = 'claro';
+        try {
+          var saved = localStorage.getItem('cassaandra.theme');
+          if (saved === 'claro' || saved === 'escuro') {
+            theme = saved;
+          } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            theme = 'escuro';
+          }
+        } catch (e) {
+          // Storage blocked (private mode): keep the default.
+        }
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,135 @@
+/*
+ * Design tokens. This is the only file where colors and fonts are written.
+ *
+ * Two layers:
+ * 1. Brand palette (fixed, from CLAUDE.md) plus a few derived shades.
+ * 2. Semantic tokens (--color-*, --font-*) that components use. Each theme
+ *    maps them to the palette, so components never pick a raw color.
+ *
+ * Contrast (WCAG AA) checked for every text/background pair below:
+ * text >= 4.5:1, borders, focus ring and icons >= 3:1.
+ */
+
+:root {
+  /* 1. Brand palette */
+  --azul-profundo: #0b3c5d;
+  --azul-medio: #328cc1;
+  --laranja-alerta: #ff6b35;
+  --vermelho-critico: #d7263d;
+  --verde-geo: #2e8b57;
+  --cinza-neutro: #f5f7fa;
+  --branco: #ffffff;
+
+  /*
+   * Derived shades. Some brand colors do not reach 4.5:1 as text on a light
+   * background (#328CC1 is 3.5:1, #2E8B57 is 4.3:1, #FF6B35 is 2.8:1), so
+   * text uses these darker (light theme) or lighter (dark theme) versions.
+   */
+  --azul-medio-escuro: #1f6a99;
+  --azul-medio-claro: #5aa9da;
+  --azul-claro: #7fc0e8;
+  --verde-geo-escuro: #1f7a4a;
+  --verde-geo-claro: #5cc98c;
+  --laranja-alerta-escuro: #b23e0f;
+  --vermelho-critico-claro: #ff6b7d;
+  --cinza-texto: #4d6578;
+  --cinza-borda: #71889b;
+  --cinza-divisor: #d5dee6;
+  --noite-fundo: #071a27;
+  --noite-superficie: #0d2a3d;
+  --noite-cabecalho: #04121c;
+  --noite-texto-suave: #a9bdcc;
+  --noite-borda: #5a7a90;
+  --noite-divisor: #1c3d52;
+
+  /* Fonts (files bundled with @fontsource, see src/main.tsx) */
+  --font-heading: 'Red Hat Display Variable', 'Red Hat Display', system-ui, sans-serif;
+  --font-body: 'Red Hat Text Variable', 'Red Hat Text', system-ui, sans-serif;
+
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-pill: 999px;
+
+  --header-height: 4rem;
+}
+
+/* 2. Semantic tokens — light theme (default) */
+:root,
+[data-theme='claro'] {
+  color-scheme: light;
+
+  --color-bg: var(--cinza-neutro);
+  --color-surface: var(--branco);
+  --color-text: var(--azul-profundo);
+  --color-text-muted: var(--cinza-texto);
+  --color-heading: var(--azul-profundo);
+  --color-border: var(--cinza-borda);
+  --color-divider: var(--cinza-divisor);
+
+  --color-header-bg: var(--azul-profundo);
+  --color-header-text: var(--cinza-neutro);
+
+  --color-action-bg: var(--azul-medio-escuro);
+  --color-action-text: var(--branco);
+  --color-link: var(--azul-medio-escuro);
+  --color-focus: var(--azul-medio-escuro);
+
+  /* Meaning colors. *-text variants are safe for text on --color-surface. */
+  --color-water: var(--azul-medio);
+  --color-vegetation: var(--verde-geo);
+  --color-success-text: var(--verde-geo-escuro);
+  --color-critical: var(--vermelho-critico);
+  --color-critical-text: var(--vermelho-critico);
+  --color-hypothesis: var(--laranja-alerta);
+  --color-hypothesis-text: var(--laranja-alerta-escuro);
+
+  /* Map markers (read by MapLibre through readToken) */
+  --color-map-hotspot: var(--laranja-alerta);
+  --color-map-hotspot-stroke: var(--azul-profundo);
+  --color-map-hotspot-selected: var(--vermelho-critico);
+}
+
+/* 2. Semantic tokens — dark theme */
+[data-theme='escuro'] {
+  color-scheme: dark;
+
+  --color-bg: var(--noite-fundo);
+  --color-surface: var(--noite-superficie);
+  --color-text: var(--cinza-neutro);
+  --color-text-muted: var(--noite-texto-suave);
+  --color-heading: var(--cinza-neutro);
+  --color-border: var(--noite-borda);
+  --color-divider: var(--noite-divisor);
+
+  --color-header-bg: var(--noite-cabecalho);
+  --color-header-text: var(--cinza-neutro);
+
+  --color-action-bg: var(--azul-medio-claro);
+  --color-action-text: var(--noite-fundo);
+  --color-link: var(--azul-claro);
+  --color-focus: var(--azul-claro);
+
+  --color-water: var(--azul-medio);
+  --color-vegetation: var(--verde-geo);
+  --color-success-text: var(--verde-geo-claro);
+  --color-critical: var(--vermelho-critico);
+  --color-critical-text: var(--vermelho-critico-claro);
+  --color-hypothesis: var(--laranja-alerta);
+  --color-hypothesis-text: var(--laranja-alerta);
+
+  --color-map-hotspot: var(--laranja-alerta);
+  --color-map-hotspot-stroke: var(--cinza-neutro);
+  --color-map-hotspot-selected: var(--vermelho-critico-claro);
+}

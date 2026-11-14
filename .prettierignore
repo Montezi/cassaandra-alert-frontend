@@ -1,0 +1,6 @@
+dist
+coverage
+package-lock.json
+# Written by the Python pipeline; never edit or reformat by hand.
+public/dados
+CLAUDE.md
