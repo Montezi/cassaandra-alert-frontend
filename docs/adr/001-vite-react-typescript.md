@@ -25,9 +25,12 @@ phones over slow 4G. The team knows React well, and the deadline is
   and jsx-a11y, plus Prettier. ESLint 10 waits for jsx-a11y.
 - State that must survive a shared link (hotspot, date, lens, polarization,
   language) lives in the URL query string, through a small `useUrlParam` hook.
-  No router library until there is more than one page.
-- Heavy parts load on demand with `React.lazy`: the map now, later the
-  technical mode and the chat.
+  No router library: the app has two pages (`/` landing, `/app` map), chosen
+  by a tiny `usePathname` + `navigate` pair in `shared/lib/urlState.ts` and
+  an internal `<Link>`. Firebase Hosting already sends every path to
+  `index.html`. Revisit if a third page needs nested routes or loaders.
+- Heavy parts load on demand with `React.lazy`: each page, the map, the
+  technical mode (with Recharts), the chat and the WhatsApp alert.
 
 ## Consequences
 

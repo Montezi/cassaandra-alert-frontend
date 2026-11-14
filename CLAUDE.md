@@ -47,10 +47,17 @@ src/
     i18n/              # pt.json, en.json
     theme/             # tokens.css
     lib/               # fetch, formatação, validação (zod)
-public/dados/          # JSON e PNG do pipeline (nunca editar à mão)
+public/dados/          # JSON e imagens do pipeline (hoje: dados de exemplo)
+public/img/            # marca, poses do Cass (com selo AI-generated), landing
 api/                   # funções do Cloud Run (agente, clima)
 docs/adr/              # decisões de arquitetura
+docs/data-contract.md  # formato dos arquivos de /dados
+docs/api-contract.md   # formato de /api/agente e /api/clima
 ```
+
+Páginas: `/` (landing) e `/app` (mapa). Sem biblioteca de rotas (ADR-001).
+Imagens fixas ficam em `public/img`, nunca em `public/assets`: `/assets/**`
+tem cache de um ano para os arquivos com hash que o Vite gera.
 
 ## Regras que não podem ser quebradas
 

@@ -1,0 +1,59 @@
+# API contract: `/api/agente` and `/api/clima`
+
+What the frontend sends and expects. Both services run on Cloud Run and are
+reached through Firebase Hosting rewrites (ADR-002), so the app always calls
+relative paths. Zod schemas: `src/features/cass/agentApi.ts` and
+`src/shared/lib/forecastSchema.ts`.
+
+## `POST /api/agente` (ADR-005)
+
+Request:
+
+```json
+{ "question": "O que mudou no Guaíba?", "hotspot_id": "guaiba-rs", "language": "pt" }
+```
+
+Response `200`, `application/json`:
+
+```json
+{
+  "paragraphs": ["Entre jan e 12 nov, o radar mediu **212 km²** de água nova…"],
+  "tools": ["consultar_hotspot", "explicar_classe"],
+  "sources": ["NISAR GCOV, 12 nov 2026", "Sentinel-1, 11 nov 2026"],
+  "note": "Previsão do tempo tem incerteza maior que a medição do radar."
+}
+```
+
+- `**text**` marks bold (the measured number). No HTML: the app escapes it.
+- Answer in `language` (`pt` or `en`). Keep Medido and Hipótese apart, and
+  give the strength of any hypothesis.
+- The app waits **20 s**, then shows "Cass could not answer" with a retry.
+  Hosting itself cuts requests at 60 s.
+
+How the app reacts:
+
+| Answer                                                                | App                                                                |
+| --------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| `200` JSON matching the schema                                        | Shows the answer.                                                  |
+| `200` but not JSON or off-contract, `404`, `405`, `501`, `502`, `503` | **Demo mode**: answers built from `/dados`, with a visible notice. |
+| Timeout, `500`, `504`, network error                                  | Error state with "Ask again".                                      |
+
+## `GET /api/clima?hotspot=<id>&lat=<lat>&lon=<lon>` (ADR-006)
+
+Response `200`, `application/json`:
+
+```json
+{
+  "source": "meteomatics",
+  "updated_at": "2026-11-14T09:00:00Z",
+  "days": [{ "date": "2026-11-15", "precipitation_mm": 18 }]
+}
+```
+
+- `source`: `meteomatics`, `open-meteo` (backup) or `snapshot` (last saved).
+  The server tries them in that order.
+- The app shows the source and `updated_at` next to the chart. A forecast
+  older than 3 days is shown for reference only and never triggers the
+  rain warning (CLAUDE.md rule 8).
+- If the request fails or takes more than 8 s, the app reads
+  `/dados/forecast-snapshot.json` instead and says so.
