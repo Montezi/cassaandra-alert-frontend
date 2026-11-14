@@ -1,3 +1,17 @@
+import { useTranslation } from 'react-i18next';
+import styles from './App.module.css';
+import { Header } from './Header';
+
 export function App() {
-  return <main id="main" />;
+  const { t } = useTranslation();
+
+  return (
+    <div className={styles.layout}>
+      <a href="#main" className="skip-link">
+        {t('a11y.skipToContent')}
+      </a>
+      <Header />
+      <main id="main" className={styles.main} tabIndex={-1} />
+    </div>
+  );
 }

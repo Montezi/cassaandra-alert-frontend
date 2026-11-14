@@ -1,0 +1,18 @@
+{
+  "app": {
+    "name": "Alerta CassAAndra",
+    "slogan": "Not a forecast. Precision.",
+    "title": "Alerta CassAAndra — flooded and burned areas seen by radar"
+  },
+  "a11y": {
+    "skipToContent": "Skip to content"
+  },
+  "header": {
+    "languageGroup": "Language",
+    "themeDark": "Dark theme"
+  },
+  "language": {
+    "pt": { "short": "PT", "name": "Português" },
+    "en": { "short": "EN", "name": "English" }
+  }
+}

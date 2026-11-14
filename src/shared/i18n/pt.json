@@ -1,0 +1,18 @@
+{
+  "app": {
+    "name": "Alerta CassAAndra",
+    "slogan": "Não é previsão. É precisão.",
+    "title": "Alerta CassAAndra — áreas alagadas e queimadas vistas por radar"
+  },
+  "a11y": {
+    "skipToContent": "Pular para o conteúdo"
+  },
+  "header": {
+    "languageGroup": "Idioma",
+    "themeDark": "Tema escuro"
+  },
+  "language": {
+    "pt": { "short": "PT", "name": "Português" },
+    "en": { "short": "EN", "name": "English" }
+  }
+}
