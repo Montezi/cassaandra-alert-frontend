@@ -25,6 +25,18 @@ export const DOMINANT_CLASSES = [
   'stable',
 ] as const;
 
+/**
+ * Lenses that can have a map overlay. A closed list: a misspelled key fails
+ * validation instead of becoming a layer that never shows up.
+ */
+export const LAYER_KEYS = [
+  'flood',
+  'drought',
+  'fire_deforestation',
+  'deformation',
+  'soil_moisture',
+] as const;
+
 /** A radar overlay: a .png path relative to /dados, parsed into its versioned URL. */
 const layerPngSchema = z
   .string()
@@ -51,31 +63,55 @@ export const hotspotPropertiesSchema = z.object({
   affected_area_km2: z.number().nonnegative().nullable(),
   /** Classifier confidence, from 0 to 1. */
   confidence: z.number().min(0).max(1).nullable(),
-  /** Date of the latest radar pass used, YYYY-MM-DD. */
+  /** Date of the latest radar pass used ("after"), YYYY-MM-DD, UTC. */
   last_pass: z.iso.date().nullable(),
+  /** Date of the "before" pass the change was measured against, UTC. */
+  baseline_pass: z.iso.date().nullable(),
+  /** Change threshold (dB) used for affected_area_km2: 2, 3 or 4. */
+  threshold_db: z.number().positive().nullable(),
   bbox: bboxSchema,
   /**
-   * Lens name -> PNG. The file holds a path relative to /dados/
-   * ("layers/guaiba-rs/flood.png"); after parsing, the value is the versioned
-   * URL ready to use ("/dados/layers/guaiba-rs/flood.png?v=a1b2c3d").
+   * Lens -> PNG. Each PNG covers exactly `bbox` and is in EPSG:3857 (Web
+   * Mercator), because MapLibre stretches it between the four corners. The
+   * file holds a path relative to /dados/ ("layers/guaiba-rs/flood.png");
+   * after parsing, the value is the versioned URL ready to use
+   * ("/dados/layers/guaiba-rs/flood.png?v=a1b2c3d").
    */
-  layers: z.record(z.string(), layerPngSchema),
+  layers: z.partialRecord(z.enum(LAYER_KEYS), layerPngSchema),
 });
 
-export const hotspotSchema = z.object({
-  type: z.literal('Feature'),
-  geometry: z.object({
-    type: z.literal('Point'),
-    coordinates: z.tuple([longitude, latitude]),
-  }),
-  properties: hotspotPropertiesSchema,
-});
+export const hotspotSchema = z
+  .object({
+    type: z.literal('Feature'),
+    geometry: z.object({
+      type: z.literal('Point'),
+      coordinates: z.tuple([longitude, latitude]),
+    }),
+    properties: hotspotPropertiesSchema,
+  })
+  .refine(
+    ({
+      geometry: {
+        coordinates: [lon, lat],
+      },
+      properties: { bbox },
+    }) => lon >= bbox[0] && lon <= bbox[2] && lat >= bbox[1] && lat <= bbox[3],
+    { message: 'the marker point must be inside bbox', path: ['geometry', 'coordinates'] },
+  );
 
 export const hotspotCollectionSchema = z
   .object({
     type: z.literal('FeatureCollection'),
-    /** Optional. `sample: true` marks hand-made data with approximate positions. */
-    metadata: z.object({ sample: z.boolean().optional() }).optional(),
+    metadata: z
+      .object({
+        /** `true` marks hand-made data: the app shows a "sample data" badge. */
+        sample: z.boolean().optional(),
+        /** Version of this contract the file follows. Current: 2. */
+        schema_version: z.number().int().positive().optional(),
+        /** When the pipeline wrote the file, ISO 8601 in UTC. */
+        generated_at: z.iso.datetime().optional(),
+      })
+      .optional(),
     features: z.array(hotspotSchema),
   })
   .refine(
