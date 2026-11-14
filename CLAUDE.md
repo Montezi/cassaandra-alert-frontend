@@ -9,6 +9,21 @@ Slogan: "Não é previsão. É precisão." / "Not a forecast. Precision."
 **Prazo:** entrega domingo, 15 nov 2026, 23:59. Prefira o simples que funciona
 ao elegante que não fica pronto.
 
+## Funcionalidades
+
+- Mapa com 6 hotspots e lentes (água, fogo, vegetação).
+- Painel: sensores, polarização HH/HV, linha do tempo, área afetada,
+  Medido × Hipótese, "Quem está na área afetada" (WorldPop, OSM).
+- Comparador antes/depois em cortina.
+- Modo técnico em modal: mudança em dB, classes, coerência, limiares 2/3/4 dB.
+- Chat com o Cass (agente em /api/agente).
+- Previsão de chuva em /api/clima: Meteomatics → Open-Meteo → último snapshot
+  salvo. O token da Meteomatics vence em 6 dez 2026.
+- Card de alerta para enviar pelo WhatsApp.
+- Badge do El Niño no cabeçalho (RONI da NOAA CPC, +2,0 °C).
+
+Time de 3 pessoas. Usuários podem ter celular simples e conexão fraca.
+
 ## Decisões (detalhes em /docs/adr)
 
 - ADR-001: Vite + React + TypeScript (SPA). Não usar Next.js.
