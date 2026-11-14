@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  # Deploy is manual for now: Actions tab -> CI -> "Run workflow" on main.
+  # Firebase refuses to deploy rewrites to Cloud Run services that do not exist
+  # yet (agente, clima). Once they exist, deploy automatically by changing the
+  # deploy step's condition to: github.event_name == 'push'
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  # Cancel outdated PR runs, never a run on main (it may be deploying).
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: Lint, typecheck, build (and deploy)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm run build
+
+      - name: Deploy to Firebase Hosting
+        if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          # JSON key of a service account with the "Firebase Hosting Admin" role,
+          # stored as a repository secret. Never commit it.
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          projectId: alerta-cassandra # TODO: confirm once the Firebase project exists
+          channelId: live
