@@ -9,6 +9,12 @@ The map shows the six hotspots and, later, radar PNG overlays positioned by
 their bounding boxes. It must be free and open source, need no API key, and
 follow the light and dark themes.
 
+## Options considered
+
+- **MapLibre GL (chosen):** WebGL vector basemaps that can be restyled for each theme, `image` sources for the radar PNGs, open source and needs no key.
+- **Leaflet:** smaller and simpler, but built around raster tiles. Vector basemaps and smooth theme switching would need extra plugins.
+- **deck.gl:** made for large WebGL data layers and heavier, and it still needs a basemap library underneath. Six points and a few PNGs do not need it.
+
 ## Decision
 
 - **MapLibre GL JS 6.**

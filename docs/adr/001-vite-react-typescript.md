@@ -10,6 +10,12 @@ It has no user accounts and no server-side pages, and it must work on simple
 phones over slow 4G. The team knows React well, and the deadline is
 15 Nov 2026, 23:59.
 
+## Options considered
+
+- **Vite + React SPA (chosen):** static output, a fast dev server, and the stack the team already knows.
+- **Next.js:** brings server rendering and API routes we do not need, and pulls hosting toward a Node server, while `/api` already lives in Cloud Run (ADR-002).
+- **Astro:** built for content pages. This app is one interactive screen, so it would be a React island inside an extra framework.
+
 ## Decision
 
 - A single-page app built with **Vite 8 + React 19 + TypeScript** in `strict`
