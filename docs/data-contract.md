@@ -49,7 +49,7 @@ A GeoJSON `FeatureCollection` with one `Point` per hotspot:
 | `confidence`        | number from 0 to 1               | yes   | Classifier confidence.                                                                              |
 | `last_pass`         | `"YYYY-MM-DD"`                   | yes   | Date of the latest radar pass used.                                                                 |
 | `bbox`              | `[west, south, east, north]`     | no    | Area of interest in degrees. `west < east`, `south < north` (no hotspot crosses the 180° meridian). |
-| `layers`            | object: lens name → path         | no    | PNG overlays, paths relative to `/dados/`. Use `{}` when there are none yet.                        |
+| `layers`            | object: lens name → path         | no    | PNG overlays, paths relative to `/dados/` (see "File paths" below). Use `{}` when there are none.   |
 
 Classes for `dominant_class`: `flood`, `drought`, `fire_deforestation`,
 `deformation`, `stable`.
@@ -67,6 +67,25 @@ positions; the app then shows a "sample data" badge. The pipeline writes
   the app uses them.
 - Polarization is **HH/HV** (NISAR L-band). Future fields use `hh` and `hv`
   in their names (e.g. `delta_hh_db`), never `vv`.
+
+## File paths inside the JSON (PNG layers)
+
+`/dados` is cached by browsers for a year, so every file URL must change on
+each deploy. The app adds the version itself; the pipeline only writes the
+plain path.
+
+- Write paths **relative to `/dados/`**: `layers/guaiba-rs/flood.png`.
+  Use only letters, digits, `_`, `-`, `.` and `/`. Layer files end in
+  `.png`.
+- Do **not** write a leading `/`, `/dados/`, `..`, a full URL (`https://...`)
+  or a query string (`?v=...`). The app rejects the file, as with any other
+  contract error.
+- When the app loads the JSON, it turns each path into the versioned URL:
+  `layers/guaiba-rs/flood.png` → `/dados/layers/guaiba-rs/flood.png?v=a1b2c3d`
+  (`a1b2c3d` = commit of the deploy). The JSON files themselves are requested
+  the same way.
+- Consequence: a regenerated PNG with the same name reaches users only
+  through a deploy from a new commit, the same as the JSON files.
 
 ## Not defined yet (ADR-004)
 

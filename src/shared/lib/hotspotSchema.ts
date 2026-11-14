@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { dataPathSchema } from './data';
 
 /**
  * Schema for public/dados/hotspots.geojson, written by the Python pipeline.
@@ -24,6 +25,12 @@ export const DOMINANT_CLASSES = [
   'stable',
 ] as const;
 
+/** A radar overlay: a .png path relative to /dados, parsed into its versioned URL. */
+const layerPngSchema = z
+  .string()
+  .regex(/\.png$/i, 'layer must be a .png file')
+  .pipe(dataPathSchema);
+
 /** [west, south, east, north] in degrees (WGS 84). */
 export const bboxSchema = z
   .tuple([longitude, latitude, longitude, latitude])
@@ -45,8 +52,12 @@ export const hotspotPropertiesSchema = z.object({
   /** Date of the latest radar pass used, YYYY-MM-DD. */
   last_pass: z.iso.date().nullable(),
   bbox: bboxSchema,
-  /** Lens name -> PNG path relative to /dados/ (e.g. "layers/guaiba-rs/flood.png"). */
-  layers: z.record(z.string(), z.string()),
+  /**
+   * Lens name -> PNG. The file holds a path relative to /dados/
+   * ("layers/guaiba-rs/flood.png"); after parsing, the value is the versioned
+   * URL ready to use ("/dados/layers/guaiba-rs/flood.png?v=a1b2c3d").
+   */
+  layers: z.record(z.string(), layerPngSchema),
 });
 
 export const hotspotSchema = z.object({
