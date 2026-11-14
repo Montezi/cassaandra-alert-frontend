@@ -1,0 +1,126 @@
+{
+  "metadata": {
+    "sample": true
+  },
+  "hotspot_id": "norte-amazonia",
+  "region": {
+    "pt": "Norte da Amazônia",
+    "en": "Northern Amazon"
+  },
+  "baseline_date": "2026-01-14",
+  "confidence": 0.81,
+  "low_coherence": false,
+  "passes": [
+    {
+      "date": "2026-10-18",
+      "affected_area_km2": 52
+    },
+    {
+      "date": "2026-10-30",
+      "affected_area_km2": 103
+    },
+    {
+      "date": "2026-11-11",
+      "affected_area_km2": 146
+    }
+  ],
+  "measured": [
+    {
+      "measure": {
+        "pt": "Sinal do radar (HH)",
+        "en": "Radar signal (HH)"
+      },
+      "value": {
+        "pt": "subiu 3,8 dB",
+        "en": "rose 3.8 dB"
+      },
+      "note": {
+        "pt": "Em área que era água: a margem secou.",
+        "en": "In an area that was water: the bank dried out."
+      }
+    },
+    {
+      "measure": {
+        "pt": "Floresta alagada (HH)",
+        "en": "Flooded forest (HH)"
+      },
+      "value": {
+        "pt": "perdeu o brilho",
+        "en": "lost its brightness"
+      },
+      "note": {
+        "pt": "Na banda L, água sob as árvores brilha. O brilho sumiu: a várzea secou.",
+        "en": "In L-band, water under the trees is bright. The brightness is gone: the floodplain dried out."
+      }
+    },
+    {
+      "measure": {
+        "pt": "Chuva em 30 dias",
+        "en": "Rain in 30 days"
+      },
+      "value": {
+        "pt": "42 mm",
+        "en": "42 mm"
+      },
+      "note": {
+        "pt": "Abaixo do normal.",
+        "en": "Below normal."
+      }
+    }
+  ],
+  "hypothesis": {
+    "text": {
+      "pt": "Chuva abaixo da média no norte da Amazônia, padrão comum em anos de El Niño.",
+      "en": "Below-average rain in the northern Amazon, a common pattern in El Niño years."
+    },
+    "evidence": {
+      "pt": "42 mm em 30 dias, 60% abaixo da média (GPM IMERG e CHIRPS), e o rio recuando nas três passagens.",
+      "en": "42 mm in 30 days, 60% below average (GPM IMERG and CHIRPS), and the river receding in all three passes."
+    },
+    "strength": "strong"
+  },
+  "exposure": [
+    {
+      "kind": "people",
+      "label": {
+        "pt": "Ribeirinhos na área",
+        "en": "Riverside residents in the area"
+      },
+      "value": {
+        "pt": "≈ 3.200",
+        "en": "≈ 3,200"
+      }
+    },
+    {
+      "kind": "school",
+      "label": {
+        "pt": "Escolas com acesso só por barco",
+        "en": "Schools reachable only by boat"
+      },
+      "value": {
+        "pt": "5",
+        "en": "5"
+      }
+    },
+    {
+      "kind": "boat",
+      "label": {
+        "pt": "Rio sem navegação",
+        "en": "River closed to boats"
+      },
+      "value": {
+        "pt": "38 km",
+        "en": "38 km"
+      }
+    }
+  ],
+  "sources": [
+    "NISAR GCOV (HH, HV)",
+    "Copernicus Sentinel-1",
+    "JRC",
+    "WorldPop",
+    "GPM IMERG (NASA)"
+  ],
+  "scenes": {},
+  "technical": null
+}

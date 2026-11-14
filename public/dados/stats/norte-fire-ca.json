@@ -1,0 +1,125 @@
+{
+  "metadata": {
+    "sample": true
+  },
+  "hotspot_id": "norte-fire-ca",
+  "region": {
+    "pt": "Sul da Califórnia, Estados Unidos",
+    "en": "Southern California, United States"
+  },
+  "baseline_date": "2026-01-14",
+  "confidence": 0.78,
+  "low_coherence": false,
+  "passes": [
+    {
+      "date": "2026-10-19",
+      "affected_area_km2": 2.1
+    },
+    {
+      "date": "2026-10-31",
+      "affected_area_km2": 2.3
+    },
+    {
+      "date": "2026-11-12",
+      "affected_area_km2": 2.3
+    }
+  ],
+  "measured": [
+    {
+      "measure": {
+        "pt": "Sinal do radar (HV)",
+        "en": "Radar signal (HV)"
+      },
+      "value": {
+        "pt": "caiu 2,9 dB",
+        "en": "fell 2.9 dB"
+      },
+      "note": {
+        "pt": "Limite da regra: −2,0 dB. A vegetação de chaparral perdeu volume.",
+        "en": "Rule threshold: −2.0 dB. The chaparral vegetation lost volume."
+      }
+    },
+    {
+      "measure": {
+        "pt": "Coerência",
+        "en": "Coherence"
+      },
+      "value": {
+        "pt": "caiu 0,45",
+        "en": "fell 0.45"
+      },
+      "note": {
+        "pt": "A superfície mudou entre as passagens.",
+        "en": "The surface changed between passes."
+      }
+    },
+    {
+      "measure": {
+        "pt": "Focos de calor (FIRMS)",
+        "en": "Heat spots (FIRMS)"
+      },
+      "value": {
+        "pt": "sim, em meados de outubro",
+        "en": "yes, in mid-October"
+      },
+      "note": {
+        "pt": "Confirmam fogo nas datas certas.",
+        "en": "They confirm fire on the right dates."
+      }
+    }
+  ],
+  "hypothesis": {
+    "text": {
+      "pt": "Ventos de Santa Ana sobre vegetação seca no fim da estação seca. A ligação com o El Niño é fraca: ali ele costuma trazer chuva no inverno.",
+      "en": "Santa Ana winds over dry vegetation at the end of the dry season. The link to El Niño is weak: there it usually brings winter rain."
+    },
+    "evidence": {
+      "pt": "Ventos fortes no dia do início e focos do FIRMS; sem chuva anormal antes do fogo.",
+      "en": "Strong winds on the day it started and FIRMS heat spots; no unusual rain before the fire."
+    },
+    "strength": "moderate"
+  },
+  "exposure": [
+    {
+      "kind": "people",
+      "label": {
+        "pt": "Moradores com ordem de evacuação",
+        "en": "Residents under evacuation orders"
+      },
+      "value": {
+        "pt": "≈ 16.000",
+        "en": "≈ 16,000"
+      }
+    },
+    {
+      "kind": "homes",
+      "label": {
+        "pt": "Casas na zona de evacuação",
+        "en": "Homes in the evacuation zone"
+      },
+      "value": {
+        "pt": "≈ 6.000",
+        "en": "≈ 6,000"
+      }
+    },
+    {
+      "kind": "fire",
+      "label": {
+        "pt": "Casas danificadas ou destruídas",
+        "en": "Homes damaged or destroyed"
+      },
+      "value": {
+        "pt": "6 ou mais",
+        "en": "6 or more"
+      }
+    }
+  ],
+  "sources": [
+    "NISAR GCOV (HV)",
+    "Copernicus Sentinel-2",
+    "FIRMS (NASA)",
+    "OpenStreetMap"
+  ],
+  "scenes": {},
+  "technical": null
+}

@@ -1,0 +1,123 @@
+{
+  "metadata": {
+    "sample": true
+  },
+  "hotspot_id": "borneo",
+  "region": {
+    "pt": "Indonésia",
+    "en": "Indonesia"
+  },
+  "baseline_date": "2026-01-14",
+  "confidence": 0.41,
+  "low_coherence": true,
+  "passes": [
+    {
+      "date": "2026-10-14",
+      "affected_area_km2": 80
+    },
+    {
+      "date": "2026-10-26",
+      "affected_area_km2": 190
+    },
+    {
+      "date": "2026-11-07",
+      "affected_area_km2": 310
+    }
+  ],
+  "measured": [
+    {
+      "measure": {
+        "pt": "Sinal do radar (HV)",
+        "en": "Radar signal (HV)"
+      },
+      "value": {
+        "pt": "caiu 2,1 dB",
+        "en": "fell 2.1 dB"
+      },
+      "note": {
+        "pt": "Limite da regra: −2,0 dB. Perto do limite.",
+        "en": "Rule threshold: −2.0 dB. Close to the limit."
+      }
+    },
+    {
+      "measure": {
+        "pt": "Cobertura vegetal antes",
+        "en": "Vegetation cover before"
+      },
+      "value": {
+        "pt": "sim",
+        "en": "yes"
+      },
+      "note": {
+        "pt": "Turfeira com floresta no início de 2026.",
+        "en": "Forested peatland in early 2026."
+      }
+    },
+    {
+      "measure": {
+        "pt": "Coerência",
+        "en": "Coherence"
+      },
+      "value": {
+        "pt": "baixa nas duas datas",
+        "en": "low on both dates"
+      },
+      "note": {
+        "pt": "Fumaça e chuva atrapalham a comparação.",
+        "en": "Smoke and rain make the comparison harder."
+      }
+    }
+  ],
+  "hypothesis": {
+    "text": {
+      "pt": "Turfa drenada para plantio fica seca e queima com facilidade em anos de El Niño.",
+      "en": "Peat drained for plantations dries out and burns easily in El Niño years."
+    },
+    "evidence": {
+      "pt": "Focos de calor do FIRMS, mas com coerência baixa no radar.",
+      "en": "FIRMS heat spots, but with low radar coherence."
+    },
+    "strength": "weak"
+  },
+  "exposure": [
+    {
+      "kind": "people",
+      "label": {
+        "pt": "Pessoas na área",
+        "en": "People in the area"
+      },
+      "value": {
+        "pt": "≈ 4.700",
+        "en": "≈ 4,700"
+      }
+    },
+    {
+      "kind": "school",
+      "label": {
+        "pt": "Escolas",
+        "en": "Schools"
+      },
+      "value": {
+        "pt": "3",
+        "en": "3"
+      }
+    },
+    {
+      "kind": "roads",
+      "label": {
+        "pt": "Estradas na área",
+        "en": "Roads in the area"
+      },
+      "value": {
+        "pt": "11 km",
+        "en": "11 km"
+      }
+    }
+  ],
+  "sources": [
+    "NISAR GCOV (HV)",
+    "FIRMS (NASA)"
+  ],
+  "scenes": {},
+  "technical": null
+}
