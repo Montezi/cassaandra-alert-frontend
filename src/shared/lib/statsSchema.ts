@@ -10,8 +10,11 @@ import { localizedTextSchema } from './hotspotSchema';
 
 const isoDate = z.iso.date();
 
-/** A file under /dados (image), parsed into its versioned URL. */
-const filePath = dataPathSchema;
+/** A raster image under /dados (docs/data-contract.md), parsed into its versioned URL. */
+const filePath = z
+  .string()
+  .regex(/\.(webp|png|jpe?g)$/i, 'image must be a .webp, .png or .jpg file')
+  .pipe(dataPathSchema);
 
 export const HYPOTHESIS_STRENGTHS = ['weak', 'moderate', 'strong'] as const;
 

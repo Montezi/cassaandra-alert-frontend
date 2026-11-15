@@ -6,7 +6,7 @@ import type { Hotspot, HotspotCollection } from '../../shared/lib/hotspotSchema'
 import { CassPose } from '../../shared/ui/CassPose';
 import { Icon } from '../../shared/ui/Icon';
 import { IconButton } from '../../shared/ui/IconButton';
-import { type AgentAnswer, AgentUnavailableError, askAgent } from './agentApi';
+import { type AgentAnswer, AgentUnavailableError, askAgent, MAX_QUESTION_CHARS } from './agentApi';
 import { CassAnswer } from './CassAnswer';
 import styles from './CassChat.module.css';
 import { answerDemo, detectIntent, type Intent, INTENTS } from './demoAgent';
@@ -74,7 +74,8 @@ export default function CassChat({ hotspot, allHotspots }: CassChatProps) {
 
   function submit(event: FormEvent) {
     event.preventDefault();
-    const question = text.trim();
+    // maxLength already stops typing; the slice also covers pasted or scripted input.
+    const question = text.trim().slice(0, MAX_QUESTION_CHARS);
     if (!question) return;
     setText('');
     void ask(question, null);
@@ -170,6 +171,7 @@ export default function CassChat({ hotspot, allHotspots }: CassChatProps) {
             id={inputId}
             rows={2}
             value={text}
+            maxLength={MAX_QUESTION_CHARS}
             placeholder={t('cass.placeholder')}
             className={styles.input}
             onChange={(event) => setText(event.target.value)}

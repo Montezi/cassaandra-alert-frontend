@@ -7,16 +7,19 @@ import type { Language } from '../../shared/i18n';
  */
 export const agentAnswerSchema = z.object({
   /** Answer paragraphs. **bold** marks the measured number. */
-  paragraphs: z.array(z.string().min(1)).min(1),
+  paragraphs: z.array(z.string().min(1).max(2000)).min(1).max(12),
   /** Tools the agent called, shown as chips ("consultar_hotspot"). */
-  tools: z.array(z.string()),
+  tools: z.array(z.string().max(60)).max(10),
   /** Sources with date ("NISAR GCOV, 12 nov 2026"). */
-  sources: z.array(z.string()),
+  sources: z.array(z.string().max(200)).max(10),
   /** Optional warning, e.g. forecasts are less certain than measurements. */
-  note: z.string().nullable().optional(),
+  note: z.string().max(500).nullable().optional(),
 });
 
 export type AgentAnswer = z.infer<typeof agentAnswerSchema>;
+
+/** Longest question the app sends; the server enforces the same limit (docs/api-contract.md). */
+export const MAX_QUESTION_CHARS = 500;
 
 /** Matches the design: "the agent did not answer within 20 seconds". */
 export const AGENT_TIMEOUT_MS = 20_000;
