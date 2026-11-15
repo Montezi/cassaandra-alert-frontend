@@ -12,7 +12,7 @@ ao elegante que não fica pronto.
 ## Decisões (detalhes em /docs/adr)
 
 - ADR-001: Vite + React + TypeScript (SPA). Não usar Next.js.
-- ADR-002: Firebase Hosting para o app e /dados; Cloud Run para /api/agente e /api/clima.
+- ADR-002: Firebase Hosting para o app e /dados; o serviço Cloud Run `agente` atende /api/agente e /api/clima.
 - ADR-003: MapLibre GL para o mapa; camadas raster como fonte `image` com bbox.
 - ADR-004: o front só lê arquivos estáticos gerados pelo pipeline Python.
 - ADR-007: i18n PT/EN e temas claro/escuro por variáveis CSS.

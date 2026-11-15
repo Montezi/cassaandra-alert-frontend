@@ -81,9 +81,9 @@ flowchart LR
   hosting -->|"/ and /app"| spa[Vite + React SPA]
   hosting -->|"/dados/**"| data[(Static JSON and images<br/>from the pipeline)]
   hosting -->|"/api/agente"| agent[Cloud Run: agente<br/>Cass LLM agent]
-  hosting -->|"/api/clima"| weather[Cloud Run: clima<br/>Meteomatics → Open-Meteo → snapshot]
+  hosting -->|"/api/clima"| agent
+  agent -->|forecast| weather[Meteomatics → Open-Meteo<br/>→ saved snapshot]
   agent --> secrets[[Secret Manager]]
-  weather --> secrets
   spa -.->|basemap tiles| ofm[OpenFreeMap]
 ```
 

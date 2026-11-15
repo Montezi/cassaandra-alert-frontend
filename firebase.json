@@ -9,7 +9,7 @@
       },
       {
         "regex": "^/api/clima(/.*)?$",
-        "run": { "serviceId": "clima", "region": "us-central1" }
+        "run": { "serviceId": "agente", "region": "us-central1" }
       },
       {
         "source": "**",
