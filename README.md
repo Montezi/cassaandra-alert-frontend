@@ -201,6 +201,13 @@ The CassAAndra symbol has two A's, for Ana and Aline. Where they cross, they for
 
 This is a team project for the NASA Space Apps Challenge. It is not affiliated with or endorsed by NASA.
 
+## Use of AI
+
+- **Images:** Cass, the CassAAndra symbol and the illustrative radar images (before/now, technical layers, alert card) are AI-generated or made by AI-written code. In the app, they carry an "AI-generated" label, and the header and footer link to an **AI credits** dialog listing every use.
+- **Data:** the sample files in `public/dados` were put together with AI assistance and carry `"ai_generated": true` in their `metadata`.
+- **Code:** developed with AI coding assistants (Claude); the team reviewed and approved each change, and assisted commits carry a `Co-Authored-By` trailer.
+- No AI-generated content uses NASA logos, flags or mission identifiers.
+
 ## License
 
 [MIT](LICENSE). Data sources keep their own licenses and terms.

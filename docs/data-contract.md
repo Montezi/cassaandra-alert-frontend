@@ -65,6 +65,9 @@ Classes for `dominant_class`: `flood`, `drought`, `fire_deforestation`,
 - `sample`: `true` marks hand-made data with approximate positions and
   illustrative values; the app then shows a "sample data" badge next to
   every number from that file. The pipeline writes `false`.
+- `ai_generated`: `true` when the file was generated or assisted by AI.
+  NASA Space Apps requires AI-generated data to be acknowledged in
+  metadata. Today's sample files are `true`; the pipeline writes `false`.
 - `schema_version`: version of this contract the file follows. Current: `2`.
 - `generated_at`: when the pipeline wrote the file, ISO 8601 in UTC
   (`2026-11-14T09:00:00Z`). Lets the app and Cass say how old the data is.

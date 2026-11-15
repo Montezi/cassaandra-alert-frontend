@@ -21,7 +21,9 @@ export const forecastResponseSchema = z.object({
 });
 
 export const forecastSnapshotSchema = z.object({
-  metadata: z.object({ sample: z.boolean().optional() }).optional(),
+  metadata: z
+    .object({ sample: z.boolean().optional(), ai_generated: z.boolean().optional() })
+    .optional(),
   source: z.literal('snapshot'),
   updated_at: z.iso.datetime(),
   forecasts: z.record(z.string(), z.array(forecastDaySchema).min(1)),
