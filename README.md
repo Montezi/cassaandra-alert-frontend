@@ -2,7 +2,7 @@
 
 **Not a forecast. Precision.**
 
-CassAAndra Alert turns what the NISAR radar measures on the ground into maps anyone can read: where water rose, where land dried out, where forest burned. It works under clouds and smoke. Built for the **NASA Space Apps Challenge 2026**, challenge _Dancing with the SARs_.
+CassAAndra Alert turns what the NISAR radar measures on the ground into maps anyone can read: where water rose, where land dried out, where forest burned. It works under clouds and smoke. Built by team **Space Valkyries** for the **NASA Space Apps Challenge 2026**, challenge _Dancing with the SARs_.
 
 [**Open the app →**](https://cassaandra-alert.web.app) · [Map](https://cassaandra-alert.web.app/app) · [Versão em português](https://cassaandra-alert.web.app/?lang=pt)
 
@@ -187,11 +187,20 @@ firebase deploy --only hosting
 
 ## Team
 
-Made by **Ana, Aline and Mirian** for the NASA Space Apps Challenge 2026.
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/images/space-valkyries-dark.png" />
+    <img src="docs/images/space-valkyries-light.png" alt="Space Valkyries team logo: a winged Valkyrie in profile with a constellation on her wing and an atom on her shield" width="240" />
+  </picture>
+</p>
 
-The logo has two A's, for Ana and Aline. Where they cross, they form the M of Mirian.
+Made by **Space Valkyries** (Ana, Aline and Mirian) for the NASA Space Apps Challenge 2026.
 
-**Cass**, our mascot, is the chat agent. The Cass images are AI-generated, and every one carries an "AI-generated" label.
+The CassAAndra symbol has two A's, for Ana and Aline. Where they cross, they form the M of Mirian.
+
+**Cass**, our mascot, is the chat agent.
+
+**AI-generated images:** Cass, the CassAAndra symbol and the Space Valkyries logo are AI-generated. The Cass images and the team logo in this README carry an "AI-generated" label.
 
 This is a team project for the NASA Space Apps Challenge. It is not affiliated with or endorsed by NASA.
 
