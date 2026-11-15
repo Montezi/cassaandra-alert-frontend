@@ -51,4 +51,5 @@ jobs:
         if: >-
           github.ref == 'refs/heads/main' &&
           (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
-        run: npx --yes firebase-tools@15 deploy --only hosting --project cassaandra-alert --non-interactive
+        # Exact version, so a deploy never pulls in a release nobody reviewed.
+        run: npx --yes firebase-tools@15.36.0 deploy --only hosting --project cassaandra-alert --non-interactive
