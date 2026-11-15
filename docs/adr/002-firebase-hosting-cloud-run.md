@@ -13,10 +13,12 @@ reach the browser. The app must use relative paths and open without login.
 
 - **Firebase Hosting** serves `dist/`, including the pipeline files under
   `/dados`.
-- Two **Cloud Run** services, `agente` and `clima`, in `us-central1`, are
-  reached through Hosting rewrites of `/api/agente` and `/api/clima`
-  (`firebase.json`). The app and the API share one origin, so the app needs no
-  CORS setup and uses only relative paths.
+- One **Cloud Run** service, `agente`, in `us-central1`, answers both
+  `/api/agente` (Cass) and `/api/clima` (forecast), through two Hosting
+  rewrites (`firebase.json`). They stay two rewrites, so `/api/clima` can move
+  to its own service later by changing one `serviceId`. The app and the API
+  share one origin, so the app needs no CORS setup and uses only relative
+  paths.
 - Keys live in **Secret Manager**, and only Cloud Run reads them.
 - During development, Vite forwards `/api` to `API_PROXY_TARGET` (default
   `http://localhost:8080`). The variable has no `VITE_` prefix, so it stays
@@ -46,8 +48,8 @@ reach the browser. The app must use relative paths and open without login.
 - New pipeline data reaches users only through a deploy from a new commit;
   the commit hash is what changes the `?v=` URLs.
 - Firebase refuses to deploy rewrites to Cloud Run services that do not
-  exist, so `agente` and `clima` must stay deployed (even as sample
-  containers).
+  exist, so `agente` must stay deployed. The old `clima` sample container is
+  no longer used and can be deleted.
 - The Google Cloud / Firebase project is `cassaandra-alert` (`.firebaserc`
   and `ci.yml`). Hosting and both Cloud Run services must live in this
   project, because Hosting rewrites only reach Cloud Run services of the
