@@ -27,6 +27,13 @@ Response `200`, `application/json`:
 - `**text**` marks bold (the measured number). No HTML: the app escapes it.
 - Answer in `language` (`pt` or `en`). Keep Medido and Hipótese apart, and
   give the strength of any hypothesis.
+- Request limits the server must enforce (the app applies the same ones):
+  `question` at most **500 characters**, `hotspot_id` one of the ids in
+  `hotspots.geojson`, `language` `pt` or `en`, body under 2 KB. Anything
+  else answers `400`.
+- Response limits the app validates: up to 12 `paragraphs` of 2000
+  characters, 10 `tools` of 60 characters, 10 `sources` of 200 characters,
+  `note` up to 500 characters. A larger answer counts as off-contract.
 - The app waits **20 s**, then shows "Cass could not answer" with a retry.
   Hosting itself cuts requests at 60 s.
 
@@ -52,6 +59,7 @@ Response `200`, `application/json`:
 
 - `source`: `meteomatics`, `open-meteo` (backup) or `snapshot` (last saved).
   The server tries them in that order.
+- `days` holds 1 to 16 entries; a longer answer counts as off-contract.
 - The app shows the source and `updated_at` next to the chart. A forecast
   older than 3 days is shown for reference only and never triggers the
   rain warning (CLAUDE.md rule 8).

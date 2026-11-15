@@ -16,7 +16,8 @@ const forecastDaySchema = z.object({
 export const forecastResponseSchema = z.object({
   source: z.enum(FORECAST_SOURCES),
   updated_at: z.iso.datetime(),
-  days: z.array(forecastDaySchema).min(1),
+  /** Bounded so a broken server cannot hand the chart thousands of bars. */
+  days: z.array(forecastDaySchema).min(1).max(16),
 });
 
 export const forecastSnapshotSchema = z.object({
