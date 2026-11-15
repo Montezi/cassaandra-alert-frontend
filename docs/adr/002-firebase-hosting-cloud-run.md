@@ -28,10 +28,12 @@ reach the browser. The app must use relative paths and open without login.
   `main`. **Every push to `main` deploys** to Firebase Hosting (live channel)
   once those checks pass. A manual run (`workflow_dispatch` on `main`)
   redeploys without a new commit.
-- The deploy uses a service account key stored as the
-  `FIREBASE_SERVICE_ACCOUNT` repository secret. The account has the roles
-  Firebase Hosting Admin, Cloud Run Viewer (Firebase checks the services
-  behind the `/api` rewrites) and API Keys Viewer.
+- The deploy runs as the `github-deploy` service account through
+  **Workload Identity Federation**: no key is stored anywhere (the project
+  also forbids service account keys, `iam.disableServiceAccountKeyCreation`).
+  Only `Montezi/cassaandra-alert-frontend` can use the pool's provider. The
+  account has the roles Firebase Hosting Admin, Cloud Run Viewer (Firebase
+  checks the services behind the `/api` rewrites) and API Keys Viewer.
 
 ## Consequences
 
