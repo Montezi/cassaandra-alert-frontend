@@ -4,12 +4,14 @@ import workerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?url';
 import { useEffect, useEffectEvent, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';
+import { useLanguage } from '../../shared/i18n/useLanguage';
 import type { Hotspot } from '../../shared/lib/hotspotSchema';
 import { prefersReducedMotion } from '../../shared/lib/motion';
 import { useTheme } from '../../shared/theme/theme';
 import { BASEMAP_STYLES } from './basemap';
 import { HotspotMarker } from './HotspotMarker';
 import { fitHotspot, fitWorld, type Overlay, setOverlay, WORLD_BOUNDS } from './hotspotLayers';
+import { localizeBasemap } from './localizeBasemap';
 import { MapUnavailable } from './MapUnavailable';
 import styles from './MapView.module.css';
 
@@ -62,6 +64,7 @@ export default function MapView({
 }: MapViewProps) {
   const { t, i18n } = useTranslation();
   const theme = useTheme();
+  const language = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<MapLibreMap | null>(null);
   const styleUrlRef = useRef<string | null>(null);
@@ -83,7 +86,10 @@ export default function MapView({
       'AttributionControl.ToggleAttribution': t('map.toggleAttribution'),
     },
   }));
-  const onStyleLoad = useEffectEvent((map: MapLibreMap) => setOverlay(map, overlay));
+  const onStyleLoad = useEffectEvent((map: MapLibreMap) => {
+    localizeBasemap(map, language);
+    setOverlay(map, overlay);
+  });
   const onFirstLoad = useEffectEvent((map: MapLibreMap) => {
     const selected = hotspots.find((h) => h.properties.id === selectedId);
     if (fitOnLoad && selected) fitHotspot(map, selected, false);
@@ -102,6 +108,10 @@ export default function MapView({
         ...options,
         bounds: WORLD_BOUNDS,
         fitBoundsOptions: { padding: 24 },
+        // One world only: no copies of the continents when dragging sideways.
+        // (MapLibre then also stops the pan at the edges of the planet. Do not
+        // add maxBounds together with `bounds`: MapLibre 6 throws on resize.)
+        renderWorldCopies: false,
         attributionControl: { compact: true },
       });
     } catch (error) {
@@ -168,6 +178,12 @@ export default function MapView({
     const selected = hotspots.find((h) => h.properties.id === selectedId);
     if (selected) fitHotspot(map, selected, !prefersReducedMotion());
   }, [selectedId, hotspots]);
+
+  // Place names on the basemap follow the app language.
+  useEffect(() => {
+    const map = mapRef.current;
+    if (map?.isStyleLoaded()) localizeBasemap(map, language);
+  }, [language]);
 
   // MapLibre only reads its texts when it creates the controls; update them
   // when the language changes.

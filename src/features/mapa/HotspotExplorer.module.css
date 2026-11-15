@@ -20,6 +20,8 @@
 
 .mapArea {
   grid-area: map;
+  /* Markers hide their labels when the map is narrow (HotspotMarker.module.css). */
+  container: map / inline-size;
   position: relative;
   min-height: 0;
   overflow: hidden;

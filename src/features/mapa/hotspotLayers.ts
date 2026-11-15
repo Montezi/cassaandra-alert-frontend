@@ -12,9 +12,9 @@ export function fitHotspot(map: MapLibreMap, hotspot: Hotspot, animate: boolean)
   map.fitBounds(hotspot.properties.bbox, { padding: 48, maxZoom: 9, animate });
 }
 
-/** From California to Borneo, with room for the labels: the first view. */
+/** From California to Borneo, with room for the labels on the left: the first view. */
 export const WORLD_BOUNDS: [[number, number], [number, number]] = [
-  [-135, -40],
+  [-165, -40],
   [150, 50],
 ];
 

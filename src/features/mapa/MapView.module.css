@@ -1,6 +1,11 @@
 .map {
   position: absolute;
   inset: 0;
+  /*
+   * Own stacking context: the markers' z-index stays inside the map, so the
+   * legend and the buttons drawn on top of it are never covered by a marker.
+   */
+  isolation: isolate;
 }
 
 .worldButton {

@@ -18,9 +18,13 @@ contrast in both themes.
 - Translation keys are typed (`i18next.d.ts`), so a misspelled key fails the
   typecheck. `en.json` must contain every key of `pt.json` (`satisfies`
   check in `shared/i18n/index.ts`).
-- Initial language: `?lang=` in the URL, then the browser language (`pt*` →
-  Portuguese, anything else → English). The fallback is Portuguese. Switching
-  language updates the URL, `<html lang>` and the page title.
+- Initial language: `?lang=` in the URL, otherwise **English**, whatever the
+  browser language (the judges and most visitors read English). The fallback
+  for a missing key is English too. Switching language updates the URL,
+  `<html lang>` and the page title.
+- The basemap labels (countries, cities, seas) follow the language too:
+  `localizeBasemap` rewrites the `text-field` of the style's symbol layers to
+  `name:pt` or `name:en`, falling back to the local name.
 - Text that comes with the data (hotspot names, El Niño effect) is stored in
   both languages: `{ "pt": "...", "en": "..." }` (docs/data-contract.md).
 

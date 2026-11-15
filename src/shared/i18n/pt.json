@@ -79,7 +79,9 @@
   },
   "legend": {
     "label": "Legenda",
-    "note": "Regiões sensíveis ao El Niño. Medimos a mudança, não a causa."
+    "note": "Regiões sensíveis ao El Niño. Medimos a mudança, não a causa.",
+    "show": "Legenda",
+    "hide": "Fechar legenda"
   },
   "panel": {
     "label": "Painel do hotspot",

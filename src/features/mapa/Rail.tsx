@@ -69,8 +69,10 @@ export function Rail({
               <span className={styles.soonIcon}>
                 <Icon name={soon} size={18} />
               </span>
-              <span className={styles.lensName}>{t(`rail.soon.${soon}`)}</span>
-              <Badge>{t('rail.comingSoon')}</Badge>
+              <span className={styles.soonText}>
+                <span>{t(`rail.soon.${soon}`)}</span>
+                <Badge>{t('rail.comingSoon')}</Badge>
+              </span>
             </li>
           ))}
         </ul>
