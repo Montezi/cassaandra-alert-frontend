@@ -1,4 +1,5 @@
 import type { DominantClass } from '../lib/hotspotSchema';
+import type { ExposureKind } from '../lib/statsSchema';
 
 /** Stroke icons (24×24 grid). Paths come from the design prototype. */
 export const ICON_PATHS = {
@@ -45,4 +46,17 @@ export const CLASS_ICON: Record<DominantClass, IconName> = {
   fire_deforestation: 'fire',
   deformation: 'deformation',
   stable: 'stable',
+};
+
+/** Icon of each exposure line (panel list and alert card). */
+export const EXPOSURE_ICON: Record<ExposureKind, IconName> = {
+  people: 'people',
+  homes: 'homes',
+  health: 'health',
+  school: 'school',
+  roads: 'roads',
+  boat: 'boat',
+  power: 'power',
+  fire: 'fire',
+  drought: 'drought',
 };

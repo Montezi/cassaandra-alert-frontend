@@ -3,7 +3,7 @@ import type { Language } from '../../shared/i18n';
 import type { Forecast } from '../../shared/lib/forecastSchema';
 import { formatDate, formatNumber } from '../../shared/lib/format';
 import type { Hotspot } from '../../shared/lib/hotspotSchema';
-import type { HotspotStats } from '../../shared/lib/statsSchema';
+import type { ExposureKind, HotspotStats } from '../../shared/lib/statsSchema';
 import { isFresh, totalRain } from '../painel/useForecast';
 
 export type AlertContent = {
@@ -12,7 +12,7 @@ export type AlertContent = {
   name: string;
   when: string;
   measured: string;
-  exposure: string[];
+  exposure: { kind: ExposureKind; text: string }[];
   rain: string | null;
   footer: string;
   link: string;
@@ -34,7 +34,10 @@ export function buildAlert(
   const cls = hotspot.dominant_class;
   const area = formatNumber(pass.affected_area_km2, language, pass.affected_area_km2 < 10 ? 1 : 0);
   const measured = t(`alert.measured.${cls ?? 'stable'}`, { area });
-  const exposure = stats.exposure.map((e) => `${e.label[language]}: ${e.value[language]}`);
+  const exposure = stats.exposure.map((e) => ({
+    kind: e.kind,
+    text: `${e.label[language]}: ${e.value[language]}`,
+  }));
   // Rule 8: an old forecast is not part of an alert.
   const rain =
     forecast && isFresh(forecast)
@@ -60,7 +63,7 @@ export function buildAlert(
   const message = [
     t('alert.messageTitle', { name: hotspot.name[language] }),
     t('alert.messageMeasured', { measured, date: formatDate(pass.date, language) }),
-    exposure.join('. ') + (exposure.length ? '.' : ''),
+    exposure.map((e) => e.text).join('. ') + (exposure.length ? '.' : ''),
     rain ? `${rain}.` : '',
     hypothesis,
     sample ? t('common.sampleData') + '.' : '',
