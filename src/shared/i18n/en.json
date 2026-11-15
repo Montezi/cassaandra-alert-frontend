@@ -79,7 +79,9 @@
   },
   "legend": {
     "label": "Legend",
-    "note": "Regions sensitive to El Niño. We measure the change, not the cause."
+    "note": "Regions sensitive to El Niño. We measure the change, not the cause.",
+    "show": "Legend",
+    "hide": "Close legend"
   },
   "panel": {
     "label": "Hotspot panel",

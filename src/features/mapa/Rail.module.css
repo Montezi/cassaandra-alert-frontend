@@ -99,6 +99,13 @@
   color: var(--color-text-muted);
 }
 
+.soonText {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
 .soonIcon {
   border: 1.5px dashed var(--color-border);
   background: transparent;

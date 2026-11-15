@@ -14,11 +14,15 @@ export function isLanguage(value: unknown): value is Language {
   return value === 'pt' || value === 'en';
 }
 
-/** The URL wins (a shared link keeps its language), then the browser. */
+/**
+ * English by default (the judges and most visitors read English). Only the
+ * URL changes it, so a shared Portuguese link keeps its language (?lang=pt).
+ */
+export const DEFAULT_LANGUAGE: Language = 'en';
+
 function initialLanguage(): Language {
   const fromUrl = getUrlParam('lang');
-  if (isLanguage(fromUrl)) return fromUrl;
-  return navigator.language.toLowerCase().startsWith('pt') ? 'pt' : 'en';
+  return isLanguage(fromUrl) ? fromUrl : DEFAULT_LANGUAGE;
 }
 
 i18n.on('languageChanged', (language) => {
@@ -34,7 +38,7 @@ void i18n.use(initReactI18next).init({
     en: { translation: en satisfies typeof pt },
   },
   lng: initialLanguage(),
-  fallbackLng: 'pt',
+  fallbackLng: DEFAULT_LANGUAGE,
   supportedLngs: [...LANGUAGES],
   // Resources are bundled, so init synchronously and never suspend.
   initAsync: false,
