@@ -34,7 +34,8 @@ Response `200`, `application/json`:
 - Response limits the app validates: up to 12 `paragraphs` of 2000
   characters, 10 `tools` of 60 characters, 10 `sources` of 200 characters,
   `note` up to 500 characters. A larger answer counts as off-contract.
-- The app waits **20 s**, then shows "Cass could not answer" with a retry.
+- The app waits **45 s**, then shows "Cass could not answer" with a retry.
+  Measured answers take 3–17 s; keep them well under 45 s.
   Hosting itself cuts requests at 60 s.
 
 How the app reacts:
