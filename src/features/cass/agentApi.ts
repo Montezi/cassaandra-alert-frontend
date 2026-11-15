@@ -21,8 +21,12 @@ export type AgentAnswer = z.infer<typeof agentAnswerSchema>;
 /** Longest question the app sends; the server enforces the same limit (docs/api-contract.md). */
 export const MAX_QUESTION_CHARS = 500;
 
-/** Matches the design: "the agent did not answer within 20 seconds". */
-export const AGENT_TIMEOUT_MS = 20_000;
+/**
+ * How long the chat waits for the agent. Real answers took 3–17 s, and a
+ * retry inside the agent can double that; Firebase Hosting cuts any request
+ * at 60 s, so 45 s leaves room without waiting forever.
+ */
+export const AGENT_TIMEOUT_MS = 45_000;
 
 /**
  * The agent is not there: placeholder container (HTML answer), route missing
