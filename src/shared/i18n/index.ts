@@ -4,7 +4,8 @@ import { getUrlParam, setUrlParam } from '../lib/urlState';
 import en from './en.json';
 import pt from './pt.json';
 
-export const LANGUAGES = ['pt', 'en'] as const;
+/** Order of the language buttons: English first, as it is the default. */
+export const LANGUAGES = ['en', 'pt'] as const;
 export type Language = (typeof LANGUAGES)[number];
 
 /** Value for <html lang>; screen readers use it to pick the voice. */
