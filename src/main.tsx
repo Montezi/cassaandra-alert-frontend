@@ -1,3 +1,5 @@
+// First on purpose: zod must be configured before any schema module loads.
+import './shared/lib/zodConfig';
 import '@fontsource-variable/red-hat-display';
 import '@fontsource-variable/red-hat-text';
 import './shared/theme/tokens.css';
