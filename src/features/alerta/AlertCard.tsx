@@ -3,7 +3,7 @@ import { HTML_LANG, type Language } from '../../shared/i18n';
 import { classStyle } from '../../shared/lib/classes';
 import type { DominantClass } from '../../shared/lib/hotspotSchema';
 import { Icon } from '../../shared/ui/Icon';
-import { CLASS_ICON } from '../../shared/ui/icons';
+import { CLASS_ICON, EXPOSURE_ICON } from '../../shared/ui/icons';
 import styles from './AlertCard.module.css';
 import type { AlertContent } from './alertMessage';
 
@@ -47,9 +47,9 @@ export function AlertCard({ content, language, image, cls }: AlertCardProps) {
         <p className={styles.measured}>{content.measured}</p>
         <ul className={styles.facts}>
           {content.exposure.slice(0, 2).map((line) => (
-            <li key={line}>
-              <Icon name="people" size={18} />
-              {line}
+            <li key={line.text}>
+              <Icon name={EXPOSURE_ICON[line.kind]} size={18} />
+              {line.text}
             </li>
           ))}
           {content.rain && (

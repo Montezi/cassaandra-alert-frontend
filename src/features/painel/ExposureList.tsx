@@ -1,22 +1,10 @@
 import { useId } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLanguage } from '../../shared/i18n/useLanguage';
-import type { ExposureKind, HotspotStats } from '../../shared/lib/statsSchema';
+import type { HotspotStats } from '../../shared/lib/statsSchema';
 import { Icon } from '../../shared/ui/Icon';
-import type { IconName } from '../../shared/ui/icons';
+import { EXPOSURE_ICON } from '../../shared/ui/icons';
 import styles from './sections.module.css';
-
-const EXPOSURE_ICON: Record<ExposureKind, IconName> = {
-  people: 'people',
-  homes: 'homes',
-  health: 'health',
-  school: 'school',
-  roads: 'roads',
-  boat: 'boat',
-  power: 'power',
-  fire: 'fire',
-  drought: 'drought',
-};
 
 /** "Quem está na área afetada": people and services inside the measured area. */
 export function ExposureList({ stats }: { stats: HotspotStats }) {
