@@ -20,13 +20,17 @@ Response `200`, `application/json`:
   "paragraphs": ["Entre jan e 12 nov, o radar mediu **212 km²** de água nova…"],
   "tools": ["consultar_hotspot", "explicar_classe"],
   "sources": ["NISAR GCOV, 12 nov 2026", "Sentinel-1, 11 nov 2026"],
-  "note": "Previsão do tempo tem incerteza maior que a medição do radar."
+  "note": null
 }
 ```
 
 - `**text**` marks bold (the measured number). No HTML: the app escapes it.
 - Answer in `language` (`pt` or `en`). Keep Medido and Hipótese apart, and
   give the strength of any hypothesis.
+- `note` is accepted but **not shown** by the chat. Put any caveat that
+  matters (forecast uncertainty, "not proof of cause") in `paragraphs`, and
+  do not repeat the sample-data warning in every answer: the panel already
+  shows a "Sample data" badge.
 - Request limits the server must enforce (the app applies the same ones):
   `question` at most **500 characters**, `hotspot_id` one of the ids in
   `hotspots.geojson`, `language` `pt` or `en`, body under 2 KB. Anything

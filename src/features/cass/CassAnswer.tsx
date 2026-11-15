@@ -11,7 +11,12 @@ function withBold(paragraph: string) {
     .map((part, index) => (index % 2 === 1 ? <strong key={index}>{part}</strong> : part));
 }
 
-/** One answer from Cass: tools used, text, optional note and sources. */
+/**
+ * One answer from Cass: tools used, text and sources. The optional `note`
+ * of the API is not shown: the backend sent the same sample-data warning in
+ * every answer, which the panel already shows as a badge. Caveats that
+ * matter go in the paragraphs.
+ */
 export function CassAnswer({ answer, language }: { answer: AgentAnswer; language: Language }) {
   const { t } = useTranslation();
   return (
@@ -39,12 +44,6 @@ export function CassAnswer({ answer, language }: { answer: AgentAnswer; language
             <p key={p}>{withBold(p)}</p>
           ))}
         </div>
-        {answer.note && (
-          <div role="note" className={styles.answerNote}>
-            <Icon name="warning" size={18} />
-            <span>{answer.note}</span>
-          </div>
-        )}
         {answer.sources.length > 0 && (
           <ul className={styles.sources} aria-label={t('sources.title')}>
             {answer.sources.map((s) => (
