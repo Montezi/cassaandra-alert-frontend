@@ -134,13 +134,13 @@ export async function answerDemo(
             peak: formatNumber(peak.precipitation_mm, language),
             day: formatWeekday(peak.date, language),
           }),
+          t('cass.demo.rainNote'),
         ],
         tools: ['previsao_tempo'],
         sources: [
           t('cass.demo.snapshotSource', { date: formatDate(snapshot.updated_at, language) }),
           ...(snapshot.metadata?.sample ? [t('common.sampleData')] : []),
         ],
-        note: t('cass.demo.rainNote'),
       };
     }
     case 'whyClass':
@@ -163,10 +163,10 @@ export async function answerDemo(
             strength: t(`hypothesis.level.${stats.hypothesis.strength}`),
           }),
           t('cass.demo.evidence', { text: stats.hypothesis.evidence[language] }),
+          t('hypothesis.disclaimer'),
         ],
         tools: ['consultar_hotspot'],
         sources: [...stats.sources.slice(0, 3), ...(sampleNote ? [sampleNote] : [])],
-        note: t('hypothesis.disclaimer'),
       };
   }
   return { paragraphs: [t('cass.demo.noData', { name })], tools: [], sources: [] };
