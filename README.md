@@ -188,10 +188,7 @@ firebase deploy --only hosting
 ## Team
 
 <p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="docs/images/space-valkyries-dark.png" />
-    <img src="docs/images/space-valkyries-light.png" alt="Space Valkyries team logo: a winged Valkyrie in profile with a constellation on her wing and an atom on her shield" width="240" />
-  </picture>
+  <img src="docs/images/space-valkyries.png" alt="Space Valkyries team logo: a purple winged Valkyrie in profile with a constellation on her wing and an atom on her shield" width="240" />
 </p>
 
 Made by **Space Valkyries** (Ana, Aline and Mirian) for the NASA Space Apps Challenge 2026.
