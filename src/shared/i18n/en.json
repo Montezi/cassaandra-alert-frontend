@@ -391,8 +391,7 @@
       "fire_deforestation": {
         "text": "Without a canopy, the radar loses the echo from the trees. The scar shows even under smoke.",
         "source": "Measured with: NISAR GCOV, HV polarization"
-      },
-      "soon": "Coming soon: ground deformation (GUNW) and soil moisture."
+      }
     },
     "how": {
       "title": "From satellite to alert in five steps",
@@ -448,28 +447,31 @@
       "promise": "it separates what it measured from what it supposes, shows date and source, and warns when a measurement is not reliable."
     },
     "validation": {
-      "title": "Validation",
-      "lead": "We check the classifier against independent reference data in at least one hotspot.",
+      "title": "How we validate",
+      "lead": "We compare the classifier's result, cell by cell, with independent reference data that the model does not use to decide. The metrics are precision and F1 per reference.",
       "reference": "Reference",
       "checks": "What it checks",
-      "precision": "Precision",
-      "pending": "to be computed",
+      "how": "How we compare",
       "rows": {
         "jrc": {
           "name": "JRC Global Surface Water",
-          "checks": "Flood and drought"
+          "checks": "Flood and drought",
+          "how": "New water must lie outside JRC permanent water; water that receded must have been water in JRC."
         },
         "sentinel1": {
           "name": "Copernicus Sentinel-1",
-          "checks": "Flood in open areas, with C-band radar"
+          "checks": "Flood in open areas, with C-band radar",
+          "how": "The same flooded area seen by another radar, on a date close to the NISAR pass."
         },
         "deter": {
           "name": "DETER (INPE)",
-          "checks": "Deforestation"
+          "checks": "Deforestation",
+          "how": "INPE deforestation alerts in the same area, between the two passes."
         },
         "firms": {
           "name": "FIRMS (NASA)",
-          "checks": "Active fires"
+          "checks": "Active fires",
+          "how": "NASA heat spots on the dates between the before and now images."
         }
       }
     },

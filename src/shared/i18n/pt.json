@@ -391,8 +391,7 @@
       "fire_deforestation": {
         "text": "Sem copa, o radar perde o eco das árvores. A cicatriz aparece mesmo debaixo de fumaça.",
         "source": "Medido com: NISAR GCOV, polarização HV"
-      },
-      "soon": "Em breve: deformação do solo (GUNW) e umidade do solo."
+      }
     },
     "how": {
       "title": "Do satélite ao alerta em cinco passos",
@@ -448,28 +447,31 @@
       "promise": "ele separa o que mediu do que supõe, mostra data e fonte e avisa quando a medição não é confiável."
     },
     "validation": {
-      "title": "Validação",
-      "lead": "Conferimos o classificador com dados de referência independentes em pelo menos um hotspot.",
+      "title": "Como validamos",
+      "lead": "Comparamos o resultado do classificador, célula a célula, com dados de referência independentes, que o modelo não usa para decidir. As métricas são precisão e F1 por referência.",
       "reference": "Referência",
       "checks": "O que confere",
-      "precision": "Precisão",
-      "pending": "a calcular",
+      "how": "Como comparamos",
       "rows": {
         "jrc": {
           "name": "JRC Global Surface Water",
-          "checks": "Cheia e seca"
+          "checks": "Cheia e seca",
+          "how": "Água nova tem que estar fora da água permanente do JRC; água que recuou tem que ter sido água no JRC."
         },
         "sentinel1": {
           "name": "Copernicus Sentinel-1",
-          "checks": "Cheia em área aberta, com radar em banda C"
+          "checks": "Cheia em área aberta, com radar em banda C",
+          "how": "A mesma área alagada vista por outro radar, numa data próxima à passagem do NISAR."
         },
         "deter": {
           "name": "DETER (INPE)",
-          "checks": "Desmatamento"
+          "checks": "Desmatamento",
+          "how": "Alertas de desmatamento do INPE na mesma área, entre as duas passagens."
         },
         "firms": {
           "name": "FIRMS (NASA)",
-          "checks": "Focos de fogo"
+          "checks": "Focos de fogo",
+          "how": "Focos de calor da NASA nas datas entre a imagem de antes e a de agora."
         }
       }
     },

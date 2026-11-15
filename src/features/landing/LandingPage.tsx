@@ -81,7 +81,6 @@ export default function LandingPage() {
                 </article>
               ))}
             </div>
-            <p className={styles.soon}>{t('landing.lenses.soon')}</p>
           </div>
         </section>
 
@@ -195,8 +194,7 @@ export default function LandingPage() {
                   <tr>
                     <th scope="col">{t('landing.validation.reference')}</th>
                     <th scope="col">{t('landing.validation.checks')}</th>
-                    <th scope="col">{t('landing.validation.precision')}</th>
-                    <th scope="col">F1</th>
+                    <th scope="col">{t('landing.validation.how')}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -204,8 +202,7 @@ export default function LandingPage() {
                     <tr key={row}>
                       <th scope="row">{t(`landing.validation.rows.${row}.name`)}</th>
                       <td>{t(`landing.validation.rows.${row}.checks`)}</td>
-                      <td>{t('landing.validation.pending')}</td>
-                      <td>{t('landing.validation.pending')}</td>
+                      <td>{t(`landing.validation.rows.${row}.how`)}</td>
                     </tr>
                   ))}
                 </tbody>
