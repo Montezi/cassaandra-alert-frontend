@@ -9,6 +9,7 @@ import {
 } from '../../shared/lib/format';
 import type { Hotspot } from '../../shared/lib/hotspotSchema';
 import type { HotspotStats, Technical } from '../../shared/lib/statsSchema';
+import { AiBadge } from '../../shared/ui/AiBadge';
 import { Dialog } from '../../shared/ui/Dialog';
 import { Icon } from '../../shared/ui/Icon';
 import { IconButton } from '../../shared/ui/IconButton';
@@ -178,6 +179,7 @@ export default function TechnicalDialog({
                 <span className={`${styles.tag} ${styles.tagRight}`}>{dateLabel}</span>
               </>
             )}
+            <AiBadge placement="bottom-center" />
             <div className={styles.zoom}>
               <IconButton
                 icon="plus"

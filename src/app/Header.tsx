@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { LanguageSwitcher } from '../shared/i18n/LanguageSwitcher';
 import { useLanguage } from '../shared/i18n/useLanguage';
 import { ThemeToggle } from '../shared/theme/ThemeToggle';
+import { AiCredits } from '../shared/ui/AiCredits';
 import { Brand } from '../shared/ui/Brand';
 import { Link } from '../shared/ui/Link';
 import { EnsoBadge } from './EnsoBadge';
@@ -21,6 +22,7 @@ export function Header() {
       <EnsoBadge />
       <span className={styles.spacer} />
       <div className={styles.controls}>
+        <AiCredits />
         <LanguageSwitcher />
         <ThemeToggle />
       </div>

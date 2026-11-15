@@ -82,7 +82,9 @@ export const technicalSchema = z.object({
 });
 
 export const hotspotStatsSchema = z.object({
-  metadata: z.object({ sample: z.boolean().optional() }).optional(),
+  metadata: z
+    .object({ sample: z.boolean().optional(), ai_generated: z.boolean().optional() })
+    .optional(),
   hotspot_id: z.string(),
   region: localizedTextSchema,
   /** Date of the "before" image (early 2026). */

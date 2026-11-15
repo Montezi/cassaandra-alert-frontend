@@ -106,6 +106,8 @@ export const hotspotCollectionSchema = z
       .object({
         /** `true` marks hand-made data: the app shows a "sample data" badge. */
         sample: z.boolean().optional(),
+        /** `true` when the content was generated or assisted by AI (Space Apps rule). */
+        ai_generated: z.boolean().optional(),
         /** Version of this contract the file follows. Current: 2. */
         schema_version: z.number().int().positive().optional(),
         /** When the pipeline wrote the file, ISO 8601 in UTC. */

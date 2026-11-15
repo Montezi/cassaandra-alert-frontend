@@ -1,6 +1,8 @@
 import { useTranslation } from 'react-i18next';
 import { useLanguage } from '../../shared/i18n/useLanguage';
 import { classStyle, LENSES } from '../../shared/lib/classes';
+import { AiBadge } from '../../shared/ui/AiBadge';
+import { AiCredits } from '../../shared/ui/AiCredits';
 import { Brand } from '../../shared/ui/Brand';
 import { CassPose } from '../../shared/ui/CassPose';
 import { Icon } from '../../shared/ui/Icon';
@@ -97,6 +99,7 @@ export default function LandingPage() {
                     loading="lazy"
                   />
                   <span className={styles.pairTag}>{t('landing.how.before')}</span>
+                  <AiBadge />
                 </div>
                 <div className={styles.pairItem}>
                   <img
@@ -107,6 +110,7 @@ export default function LandingPage() {
                     loading="lazy"
                   />
                   <span className={styles.pairTag}>{t('landing.how.now')}</span>
+                  <AiBadge />
                 </div>
               </div>
               <figcaption className={styles.caption}>{t('landing.how.caption')}</figcaption>
@@ -158,14 +162,17 @@ export default function LandingPage() {
 
         <section className={styles.section} aria-labelledby="brand-title">
           <div className={`${styles.container} ${styles.brandStory}`}>
-            <img
-              src={`/img/brand/simbolo-${theme}.webp`}
-              alt={t('landing.brand.symbolAlt')}
-              width={240}
-              height={176}
-              className={styles.bigSymbol}
-              loading="lazy"
-            />
+            <figure className={styles.symbolFigure}>
+              <img
+                src={`/img/brand/simbolo-${theme}.webp`}
+                alt={t('landing.brand.symbolAlt')}
+                width={240}
+                height={176}
+                className={styles.bigSymbol}
+                loading="lazy"
+              />
+              <AiBadge placement="inline" />
+            </figure>
             <div>
               <h2 id="brand-title" className={styles.sectionTitle}>
                 {t('landing.brand.title')}
@@ -233,6 +240,9 @@ export default function LandingPage() {
           <div className={styles.footerText}>
             <p>{t('landing.footer.data')}</p>
             <p>{t('landing.footer.ai')}</p>
+            <p>
+              <AiCredits variant="footer" />
+            </p>
           </div>
         </div>
       </footer>

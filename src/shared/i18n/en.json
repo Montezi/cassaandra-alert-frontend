@@ -482,7 +482,43 @@
     },
     "footer": {
       "data": "Data: NISAR (NASA and ISRO) via ASF, GPM IMERG and FIRMS (NASA), NOAA CPC (RONI), CHIRPS, Copernicus Sentinel-1 and 2, ESA WorldCover, JRC Global Surface Water, DETER/INPE, WorldPop, OpenStreetMap, Meteomatics and Open-Meteo. Basemap: OpenFreeMap and OpenStreetMap.",
-      "ai": "Open source on GitHub. Cass and the brand symbol are AI-generated images. The app's numbers are sample data until the pipeline publishes the real ones."
+      "ai": "Open source on GitHub. Cass, the brand symbol and the illustrative radar images were made with AI; the app's numbers are sample data, put together with AI assistance, until the pipeline publishes the real ones."
+    }
+  },
+  "ai": {
+    "badge": "AI-generated",
+    "credits": {
+      "open": "AI credits",
+      "title": "Where we used AI",
+      "close": "Close AI credits",
+      "intro": "We used AI tools to speed up the project. Everything generated or assisted by AI is listed below and, in images, marked with an \"AI-generated\" label.",
+      "items": {
+        "cass": {
+          "what": "Cass, the mascot",
+          "how": "Every image of Cass is AI-generated and carries an \"AI-generated\" label."
+        },
+        "symbol": {
+          "what": "CassAAndra symbol",
+          "how": "AI-generated. It appears in the header, on the landing page and on the alert card."
+        },
+        "radar": {
+          "what": "Illustrative radar images",
+          "how": "The before/now images, the technical mode layers and the alert card image are synthetic illustrations, created by code written with AI assistance. They carry an \"AI-generated\" label."
+        },
+        "data": {
+          "what": "Sample data",
+          "how": "The numbers in /dados were put together with AI assistance until the pipeline publishes real results. The files carry \"sample\": true and \"ai_generated\": true, and the app shows a \"Sample data\" badge."
+        },
+        "code": {
+          "what": "Code and documentation",
+          "how": "The app and the agent were developed with AI coding assistants (Claude). The team reviewed and approved each change; assisted commits carry a Co-Authored-By line."
+        },
+        "agent": {
+          "what": "Cass's answers",
+          "how": "The chat uses Gemini on Vertex AI to write answers, limited to measured data, with every number checked."
+        }
+      },
+      "nasa": "No AI-generated content uses NASA logos, flags or mission identifiers."
     }
   }
 }

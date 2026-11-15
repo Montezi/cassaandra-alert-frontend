@@ -4,6 +4,7 @@ import { classStyle } from '../../shared/lib/classes';
 import type { DominantClass } from '../../shared/lib/hotspotSchema';
 import { Icon } from '../../shared/ui/Icon';
 import { CLASS_ICON, EXPOSURE_ICON } from '../../shared/ui/icons';
+import { AiBadge } from '../../shared/ui/AiBadge';
 import styles from './AlertCard.module.css';
 import type { AlertContent } from './alertMessage';
 
@@ -42,6 +43,7 @@ export function AlertCard({ content, language, image, cls }: AlertCardProps) {
         {image && (
           <div className={styles.imageFrame}>
             <img src={image} alt={t('alert.imageAlt')} className={styles.image} />
+            <AiBadge />
           </div>
         )}
         <p className={styles.measured}>{content.measured}</p>

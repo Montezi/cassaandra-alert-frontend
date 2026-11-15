@@ -80,6 +80,7 @@
 }
 
 .imageFrame {
+  position: relative;
   aspect-ratio: 760 / 460;
   border-radius: 12px;
   overflow: hidden;

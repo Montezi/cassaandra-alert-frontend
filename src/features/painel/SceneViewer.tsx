@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useLanguage } from '../../shared/i18n/useLanguage';
 import { formatDate, formatMonthYear } from '../../shared/lib/format';
 import type { HotspotStats } from '../../shared/lib/statsSchema';
+import { AiBadge } from '../../shared/ui/AiBadge';
 import { CassPose } from '../../shared/ui/CassPose';
 import { IconButton } from '../../shared/ui/IconButton';
 import { CompareImages } from './CompareImages';
@@ -81,6 +82,7 @@ export function SceneViewer({
               afterAlt={t('scenes.altNow', { date: formatDate(pair.afterDate, language) })}
               sliderLabel={t('scenes.slider')}
             />
+            <AiBadge />
             {onOpenTechnical && (
               <IconButton
                 icon="expand"

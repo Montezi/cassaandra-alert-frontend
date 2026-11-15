@@ -482,7 +482,43 @@
     },
     "footer": {
       "data": "Dados: NISAR (NASA e ISRO) via ASF, GPM IMERG e FIRMS (NASA), NOAA CPC (RONI), CHIRPS, Copernicus Sentinel-1 e 2, ESA WorldCover, JRC Global Surface Water, DETER/INPE, WorldPop, OpenStreetMap, Meteomatics e Open-Meteo. Mapa base: OpenFreeMap e OpenStreetMap.",
-      "ai": "Código aberto no GitHub. O Cass e o símbolo da marca são imagens geradas por IA. Os números do app são dados de exemplo até o pipeline publicar os reais."
+      "ai": "Código aberto no GitHub. O Cass, o símbolo da marca e as imagens de radar ilustrativas foram gerados com IA; os números do app são dados de exemplo, montados com assistência de IA, até o pipeline publicar os reais."
+    }
+  },
+  "ai": {
+    "badge": "Gerado por IA",
+    "credits": {
+      "open": "Créditos de IA",
+      "title": "Onde usamos IA",
+      "close": "Fechar créditos de IA",
+      "intro": "Usamos ferramentas de IA para acelerar o projeto. Tudo o que foi gerado ou assistido por IA está listado abaixo e, nas imagens, marcado com o selo \"Gerado por IA\" ou \"AI-generated\".",
+      "items": {
+        "cass": {
+          "what": "Cass, o mascote",
+          "how": "Todas as imagens do Cass foram geradas por IA e trazem o selo \"AI-generated\"."
+        },
+        "symbol": {
+          "what": "Símbolo do CassAAndra",
+          "how": "Gerado por IA. Aparece no cabeçalho, na landing e no card de alerta."
+        },
+        "radar": {
+          "what": "Imagens de radar ilustrativas",
+          "how": "As imagens de antes e agora, as camadas do modo técnico e a imagem do card de alerta são ilustrações sintéticas, criadas por código escrito com assistência de IA. Trazem o selo \"Gerado por IA\"."
+        },
+        "data": {
+          "what": "Dados de exemplo",
+          "how": "Os números de /dados foram montados com assistência de IA enquanto o pipeline não publica os resultados reais. Os arquivos trazem \"sample\": true e \"ai_generated\": true, e o app mostra o selo \"Dados de exemplo\"."
+        },
+        "code": {
+          "what": "Código e documentação",
+          "how": "O app e o agente foram desenvolvidos com assistentes de código (Claude). O time revisou e aprovou cada mudança; os commits assistidos trazem a linha Co-Authored-By."
+        },
+        "agent": {
+          "what": "Respostas do Cass",
+          "how": "O chat usa o Gemini, no Vertex AI, para escrever as respostas, limitado aos dados medidos e com verificação de cada número."
+        }
+      },
+      "nasa": "Nenhum conteúdo gerado por IA usa logotipo, bandeira ou identificador de missão da NASA."
     }
   }
 }
