@@ -14,6 +14,8 @@ concurrency:
 
 permissions:
   contents: read
+  # Needed to request the OIDC token used by google-github-actions/auth.
+  id-token: write
 
 jobs:
   check:
@@ -33,15 +35,20 @@ jobs:
       - run: npm run build
 
       # Every push to main (e.g. a merged PR) deploys, after the checks above pass.
+      # Deploy without any stored key: GitHub proves who it is with a short-lived
+      # OIDC token, and Google lets this repository (and only it) act as the
+      # github-deploy service account (Workload Identity Federation, ADR-010).
+      - name: Authenticate to Google Cloud
+        if: >-
+          github.ref == 'refs/heads/main' &&
+          (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: projects/41740695959/locations/global/workloadIdentityPools/github/providers/github-repo
+          service_account: github-deploy@cassaandra-alert.iam.gserviceaccount.com
+
       - name: Deploy to Firebase Hosting
         if: >-
           github.ref == 'refs/heads/main' &&
           (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
-        uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          # JSON key of a service account with the roles Firebase Hosting Admin,
-          # Cloud Run Viewer (needed by the /api rewrites) and API Keys Viewer,
-          # stored as the FIREBASE_SERVICE_ACCOUNT repository secret. Never commit it.
-          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-          projectId: cassaandra-alert
-          channelId: live
+        run: npx --yes firebase-tools@15 deploy --only hosting --project cassaandra-alert --non-interactive
