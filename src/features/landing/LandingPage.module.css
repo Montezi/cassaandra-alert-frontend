@@ -166,11 +166,6 @@
   font-size: var(--font-size-sm);
 }
 
-.soon {
-  margin-top: var(--space-6);
-  color: var(--color-text-muted);
-}
-
 .split {
   display: grid;
   gap: 3rem;
