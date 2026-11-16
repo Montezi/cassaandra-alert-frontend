@@ -145,8 +145,8 @@
       "sentinel2": "Copernicus Sentinel-2, óptico: as nuvens escondem a cheia. Por isso usamos radar."
     },
     "missingSensor": "Este sensor ainda não tem imagem para este hotspot.",
-    "noneTitle": "As imagens deste hotspot ainda não foram processadas.",
-    "noneText": "Os números abaixo já vêm do pipeline. As imagens chegam na próxima atualização."
+    "noneTitle": "As imagens de radar deste hotspot ainda não foram processadas.",
+    "noneText": "Por enquanto, só o Lago Guaíba tem imagens, e elas são ilustrativas. Os números abaixo são dados de exemplo."
   },
   "timeline": {
     "label": "Passagens do NISAR (a cada 12 dias)"

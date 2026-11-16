@@ -145,8 +145,8 @@
       "sentinel2": "Copernicus Sentinel-2, optical: clouds hide the flood. That is why we use radar."
     },
     "missingSensor": "This sensor has no image for this hotspot yet.",
-    "noneTitle": "The images for this hotspot have not been processed yet.",
-    "noneText": "The numbers below already come from the pipeline. The images arrive in the next update."
+    "noneTitle": "The radar images for this hotspot have not been processed yet.",
+    "noneText": "For now, only Guaíba Lake has images, and they are illustrative. The numbers below are sample data."
   },
   "timeline": {
     "label": "NISAR passes (every 12 days)"
